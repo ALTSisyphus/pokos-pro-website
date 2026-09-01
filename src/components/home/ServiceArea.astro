@@ -1,0 +1,106 @@
+---
+/**
+ * Раздел географии оказания услуг.
+ *
+ * Назначение:
+ * - сообщить посетителю территорию работы компании;
+ * - помочь определить возможность выезда на конкретный участок;
+ * - привести посетителя к уточнению возможности выезда.
+ *
+ * Компонент используется на главной странице сайта.
+ *
+ * Конкретный список населённых пунктов будет добавлен
+ * после определения постоянной зоны обслуживания.
+ */
+---
+
+<section
+  id="service-area"
+  class="section section--dark service-area"
+  aria-labelledby="service-area-title"
+>
+  <div class="container">
+    <div class="service-area__content">
+      <header class="section-heading service-area__heading">
+        <h2
+          id="service-area-title"
+          class="section-heading__title"
+        >
+          Где мы работаем
+        </h2>
+
+        <p class="section-heading__description">
+          Выезжаем на дачные и загородные участки в пределах нашей зоны обслуживания.
+        </p>
+      </header>
+
+      <p class="service-area__text">
+        Уточнить возможность выезда в ваш населённый пункт можно при оформлении заявки.
+      </p>
+
+      <a
+        class="button button--primary"
+        href="#contacts"
+      >
+        Уточнить возможность выезда
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-area {
+    overflow: hidden;
+  }
+
+  .service-area::after {
+    position: absolute;
+    top: 50%;
+    right: -8rem;
+
+    width: 24rem;
+    height: 24rem;
+
+    border: 4rem solid
+      color-mix(
+        in srgb,
+        var(--color-primary) 15%,
+        transparent
+      );
+
+    border-radius: var(--radius-pill);
+
+    content: '';
+
+    pointer-events: none;
+
+    transform: translateY(-50%);
+  }
+
+  .service-area__content {
+    position: relative;
+
+    z-index: var(--z-base);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+
+    max-width: 720px;
+  }
+
+  .service-area__heading {
+    margin-bottom: 0;
+  }
+
+  .service-area__text {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  @media (max-width: 479px) {
+    .service-area__content .button {
+      width: 100%;
+    }
+  }
+</style>

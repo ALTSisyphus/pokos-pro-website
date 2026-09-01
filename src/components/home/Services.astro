@@ -1,0 +1,92 @@
+---
+/**
+ * Раздел услуг компании.
+ *
+ * Назначение:
+ * - представить основные виды выполняемых работ;
+ * - помочь посетителю определить подходящую услугу;
+ * - показать направления работы компании.
+ *
+ * Компонент используется на главной странице сайта.
+ */
+---
+
+<section
+  id="services"
+  class="section services"
+  aria-labelledby="services-title"
+>
+  <div class="container">
+    <header class="section-heading">
+      <h2
+        id="services-title"
+        class="section-heading__title"
+      >
+        Наши услуги
+      </h2>
+
+      <p class="section-heading__description">
+        Выполняем работы по покосу травы и уходу за дачными участками.
+      </p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="card services__card">
+        <h3>
+          Покос травы
+        </h3>
+
+        <p>
+          Покос травы на дачных и загородных участках.
+        </p>
+      </article>
+
+      <article class="card services__card">
+        <h3>
+          Покос высокой травы
+        </h3>
+
+        <p>
+          Работа с высокой и густой растительностью на запущенных участках.
+        </p>
+      </article>
+
+      <article class="card services__card">
+        <h3>
+          Расчистка участка
+        </h3>
+
+        <p>
+          Удаление лишней растительности и подготовка территории к дальнейшим работам.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services__card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    overflow: hidden;
+  }
+
+  .services__card::before {
+    width: 42px;
+    height: 4px;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-primary);
+
+    content: '';
+  }
+
+  .services__card h3 {
+    margin-top: var(--space-2);
+  }
+</style>

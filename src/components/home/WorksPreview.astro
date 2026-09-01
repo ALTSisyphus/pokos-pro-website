@@ -1,0 +1,94 @@
+---
+/**
+ * Предварительный просмотр выполненных работ.
+ *
+ * Назначение:
+ * - показать примеры выполненных заказов;
+ * - продемонстрировать результат работы компании;
+ * - повысить доверие потенциальных клиентов.
+ *
+ * Компонент используется на главной странице сайта.
+ */
+---
+
+<section
+  id="works"
+  class="section works"
+  aria-labelledby="works-title"
+>
+  <div class="container">
+    <header class="section-heading">
+      <h2
+        id="works-title"
+        class="section-heading__title"
+      >
+        Наши работы
+      </h2>
+
+      <p class="section-heading__description">
+        Примеры участков до и после выполнения работ.
+      </p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="card works__card">
+        <h3>
+          Покос дачного участка
+        </h3>
+
+        <p>
+          Покос травы и приведение территории в аккуратный вид.
+        </p>
+      </article>
+
+      <article class="card works__card">
+        <h3>
+          Расчистка запущенного участка
+        </h3>
+
+        <p>
+          Удаление высокой травы и густой растительности.
+        </p>
+      </article>
+
+      <article class="card works__card">
+        <h3>
+          Уход за территорией
+        </h3>
+
+        <p>
+          Поддерживающий покос для сохранения участка в ухоженном состоянии.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .works__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    min-height: 220px;
+  }
+
+  .works__card h3 {
+    margin-top: auto;
+  }
+
+  .works__card::before {
+    width: 100%;
+    height: 6px;
+
+    border-radius: var(--radius-pill);
+
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-primary-soft)
+    );
+
+    content: '';
+  }
+</style>

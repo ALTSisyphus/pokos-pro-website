@@ -1,0 +1,171 @@
+---
+/**
+ * Первый экран главной страницы.
+ *
+ * Назначение:
+ * - кратко сообщить посетителю основную услугу компании;
+ * - сформулировать главное ценностное предложение;
+ * - привести посетителя к отправке заявки;
+ * - обеспечить быстрый переход к разделу с услугами.
+ *
+ * Компонент используется на главной странице сайта.
+ */
+---
+
+<section
+  id="hero"
+  class="hero"
+  aria-labelledby="hero-title"
+>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1 id="hero-title">
+        Покос травы на дачных участках
+      </h1>
+
+      <p class="hero__description">
+        Профессиональный покос травы и уход за участками.
+      </p>
+
+      <div class="hero__actions">
+        <a
+          class="button button--primary"
+          href="#contacts"
+        >
+          Оставить заявку
+        </a>
+
+        <a
+          class="button button--outline"
+          href="#services"
+        >
+          Посмотреть услуги
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+      radial-gradient(
+        circle at 85% 25%,
+        var(--color-primary-soft),
+        transparent 28rem
+      ),
+      linear-gradient(
+        135deg,
+        var(--color-background) 0%,
+        var(--color-background-soft) 100%
+      );
+  }
+
+  .hero::before,
+  .hero::after {
+    position: absolute;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--color-primary-soft);
+
+    content: '';
+
+    pointer-events: none;
+  }
+
+  .hero::before {
+    top: 18%;
+    right: -8rem;
+
+    width: 20rem;
+    height: 20rem;
+
+    opacity: 0.65;
+  }
+
+  .hero::after {
+    right: 12%;
+    bottom: -6rem;
+
+    width: 12rem;
+    height: 12rem;
+
+    opacity: 0.8;
+  }
+
+  .hero__inner {
+    position: relative;
+
+    z-index: var(--z-base);
+
+    display: flex;
+    align-items: center;
+
+    min-height: clamp(
+      560px,
+      calc(100svh - var(--header-height)),
+      760px
+    );
+
+    padding-block: var(--section-space);
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+
+    max-width: 780px;
+  }
+
+  .hero h1 {
+    max-width: 13ch;
+
+    text-wrap: balance;
+  }
+
+  .hero__description {
+    max-width: 570px;
+
+    color: var(--color-text);
+    font-size: clamp(
+      var(--font-size-md),
+      1rem + 0.5vw,
+      var(--font-size-lg)
+    );
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 767px) {
+    .hero__inner {
+      min-height: auto;
+
+      padding-block:
+        var(--space-20)
+        var(--space-24);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero__actions {
+      width: 100%;
+    }
+
+    .hero__actions .button {
+      width: 100%;
+    }
+  }
+</style>

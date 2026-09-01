@@ -1,0 +1,332 @@
+---
+/**
+ * Шапка сайта.
+ *
+ * Назначение:
+ * - отображать название компании;
+ * - предоставлять основную навигацию по странице;
+ * - обеспечивать быстрый переход к ключевым разделам сайта.
+ *
+ * Компонент предназначен для повторного использования
+ * на страницах сайта.
+ */
+
+const navigation = [
+  {
+    href: '/#services',
+    label: 'Услуги',
+  },
+  {
+    href: '/#advantages',
+    label: 'Преимущества',
+  },
+  {
+    href: '/#works',
+    label: 'Работы',
+  },
+  {
+    href: '/#prices',
+    label: 'Цены',
+  },
+  {
+    href: '/#contacts',
+    label: 'Контакты',
+  },
+] as const;
+---
+
+<header class="site-header">
+  <div class="container">
+    <nav
+      class="site-header__nav"
+      aria-label="Основная навигация"
+    >
+      <!-- Логотип / название компании -->
+      <a
+        class="site-header__brand"
+        href="/"
+        aria-label="Покос ПРО — главная страница"
+      >
+        <span>Покос</span>
+        <strong>ПРО</strong>
+      </a>
+
+      <!-- Навигация для больших экранов -->
+      <div class="site-header__desktop">
+        <ul
+          class="site-header__links"
+          role="list"
+        >
+          {
+            navigation.map((item) => (
+              <li>
+                <a href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <a
+          class="button button--primary site-header__cta"
+          href="/#contacts"
+        >
+          Оставить заявку
+        </a>
+      </div>
+
+      <!-- Навигация для мобильных устройств -->
+      <details class="site-header__menu">
+        <summary>
+          Меню
+        </summary>
+
+        <div class="site-header__menu-panel">
+          <ul
+            class="site-header__menu-links"
+            role="list"
+          >
+            {
+              navigation.map((item) => (
+                <li>
+                  <a href={item.href}>
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+
+          <a
+            class="button button--primary"
+            href="/#contacts"
+          >
+            Оставить заявку
+          </a>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const mobileMenus =
+    document.querySelectorAll<HTMLDetailsElement>('.site-header__menu');
+
+  mobileMenus.forEach((menu) => {
+    const links = menu.querySelectorAll('a');
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.removeAttribute('open');
+      });
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+
+    z-index: var(--z-header);
+
+    border-bottom: 1px solid var(--color-border);
+
+    background: color-mix(
+      in srgb,
+      var(--color-white) 94%,
+      transparent
+    );
+
+    backdrop-filter: blur(14px);
+  }
+
+  .site-header__nav {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+
+    min-height: var(--header-height);
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+
+    flex-shrink: 0;
+
+    color: var(--color-heading);
+
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .site-header__brand strong {
+    color: var(--color-primary);
+  }
+
+  .site-header__desktop {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  .site-header__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(
+      var(--space-4),
+      2vw,
+      var(--space-8)
+    );
+  }
+
+  .site-header__links a {
+    position: relative;
+
+    display: inline-flex;
+
+    padding-block: var(--space-3);
+
+    color: var(--color-heading);
+
+    font-family: var(--font-heading);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .site-header__links a::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 2px;
+
+    background: var(--color-primary);
+
+    content: '';
+
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform var(--transition-base);
+  }
+
+  .site-header__links a:hover {
+    color: var(--color-primary);
+  }
+
+  .site-header__links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .site-header__cta {
+    flex-shrink: 0;
+  }
+
+  .site-header__menu {
+    display: none;
+  }
+
+  .site-header__menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding-inline: var(--space-5);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+
+    color: var(--color-heading);
+
+    font-family: var(--font-heading);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+
+    cursor: pointer;
+
+    list-style: none;
+  }
+
+  .site-header__menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .site-header__menu[open] summary {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .site-header__menu-panel {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+
+    display: grid;
+    gap: var(--space-6);
+
+    width: min(320px, calc(100vw - 32px));
+
+    padding: var(--space-6);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+
+    background: var(--color-white);
+
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-header__menu-links {
+    display: grid;
+  }
+
+  .site-header__menu-links a {
+    display: block;
+
+    padding-block: var(--space-3);
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-heading);
+
+    font-family: var(--font-heading);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .site-header__menu-links a:hover {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 900px) {
+    .site-header__desktop {
+      display: none;
+    }
+
+    .site-header__menu {
+      display: block;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .site-header__brand {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>

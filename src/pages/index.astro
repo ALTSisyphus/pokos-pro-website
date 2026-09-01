@@ -1,0 +1,66 @@
+---
+/**
+ * Главная страница сайта.
+ *
+ * Назначение:
+ * - представить услуги компании;
+ * - показать преимущества;
+ * - показать примеры выполненных работ;
+ * - предоставить информацию о стоимости;
+ * - показать географию оказания услуг;
+ * - ответить на частые вопросы;
+ * - познакомить посетителя с полезными материалами;
+ * - привести посетителя к отправке заявки.
+ *
+ * HTML-оболочка страницы находится в BaseLayout.
+ * Шапка и подвал вынесены в отдельные layout-компоненты.
+ * Секции главной страницы вынесены в отдельные home-компоненты.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+import Hero from '../components/home/Hero.astro';
+import Services from '../components/home/Services.astro';
+import Benefits from '../components/home/Benefits.astro';
+import WorksPreview from '../components/home/WorksPreview.astro';
+import Pricing from '../components/home/Pricing.astro';
+import ServiceArea from '../components/home/ServiceArea.astro';
+import FAQ from '../components/home/FAQ.astro';
+import BlogPreview from '../components/home/BlogPreview.astro';
+import FinalCTA from '../components/home/FinalCTA.astro';
+---
+
+<BaseLayout
+  title="Покос ПРО — профессиональный покос травы"
+  description="Профессиональный покос травы и уход за дачными участками. Покос высокой травы, расчистка участков и другие работы."
+>
+  <!-- Шапка сайта -->
+  <Header />
+
+  <!-- Основное содержимое главной страницы -->
+  <main>
+    <Hero />
+
+    <Services />
+
+    <Benefits />
+
+    <WorksPreview />
+
+    <Pricing />
+
+    <ServiceArea />
+
+    <FAQ />
+
+    <BlogPreview />
+
+    <FinalCTA />
+  </main>
+
+  <!-- Подвал сайта -->
+  <Footer />
+</BaseLayout>

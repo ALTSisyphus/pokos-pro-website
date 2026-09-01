@@ -1,0 +1,91 @@
+---
+/**
+ * Предварительный просмотр материалов блога.
+ *
+ * Назначение:
+ * - познакомить посетителя с полезными материалами;
+ * - показать экспертность компании;
+ * - обеспечить переход к разделу блога.
+ *
+ * Компонент используется на главной странице сайта.
+ *
+ * Реальные статьи и ссылки будут подключены
+ * после создания структуры блога.
+ */
+---
+
+<section
+  id="blog"
+  class="section section--soft blog-preview"
+  aria-labelledby="blog-title"
+>
+  <div class="container">
+    <header class="section-heading">
+      <h2
+        id="blog-title"
+        class="section-heading__title"
+      >
+        Полезные статьи
+      </h2>
+
+      <p class="section-heading__description">
+        Материалы об уходе за участком, покосе травы и подготовке территории.
+      </p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="card blog-preview__card">
+        <h3>
+          Как часто нужно косить траву на участке
+        </h3>
+
+        <p>
+          Разберём, от чего зависит периодичность покоса и как поддерживать участок в порядке.
+        </p>
+      </article>
+
+      <article class="card blog-preview__card">
+        <h3>
+          Что делать с высокой травой
+        </h3>
+
+        <p>
+          Основные особенности работы с высокой и густой растительностью.
+        </p>
+      </article>
+
+      <article class="card blog-preview__card">
+        <h3>
+          Как подготовить участок к покосу
+        </h3>
+
+        <p>
+          Что стоит проверить на территории перед началом работ.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-preview__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    min-height: 240px;
+  }
+
+  .blog-preview__card::before {
+    width: 100%;
+    height: 1px;
+
+    background: var(--color-border);
+
+    content: '';
+  }
+
+  .blog-preview__card h3 {
+    margin-top: auto;
+  }
+</style>

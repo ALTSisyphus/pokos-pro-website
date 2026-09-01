@@ -1,0 +1,189 @@
+---
+/**
+ * Финальный призыв к действию.
+ *
+ * Назначение:
+ * - повторно сформулировать предложение компании;
+ * - привести посетителя к отправке заявки;
+ * - предоставить базовую форму для обращения;
+ * - завершить основное содержимое главной страницы.
+ *
+ * Компонент используется на главной странице сайта.
+ *
+ * Обработка и отправка формы будут реализованы
+ * на отдельном этапе разработки.
+ */
+---
+
+<section
+  id="contacts"
+  class="section section--dark final-cta"
+  aria-labelledby="contacts-title"
+>
+  <div class="container">
+    <div class="final-cta__layout">
+      <header class="section-heading final-cta__heading">
+        <h2
+          id="contacts-title"
+          class="section-heading__title"
+        >
+          Заказать покос травы
+        </h2>
+
+        <p class="section-heading__description">
+          Оставьте информацию об участке, чтобы обсудить объём и стоимость работ.
+        </p>
+      </header>
+
+      <form class="final-cta__form">
+        <div class="final-cta__field">
+          <label for="name">
+            Имя
+          </label>
+
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="final-cta__field">
+          <label for="phone">
+            Телефон
+          </label>
+
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            required
+          />
+        </div>
+
+        <div class="final-cta__field final-cta__field--full">
+          <label for="message">
+            Информация об участке
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+          ></textarea>
+        </div>
+
+        <div class="final-cta__submit">
+          <button
+            class="button button--primary"
+            type="submit"
+          >
+            Отправить заявку
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    overflow: hidden;
+  }
+
+  .final-cta__layout {
+    position: relative;
+
+    z-index: var(--z-base);
+
+    display: grid;
+    grid-template-columns:
+      minmax(0, 0.85fr)
+      minmax(0, 1.15fr);
+    gap: clamp(
+      var(--space-10),
+      7vw,
+      var(--space-24)
+    );
+
+    align-items: start;
+  }
+
+  .final-cta__heading {
+    position: sticky;
+    top: calc(
+      var(--header-height) +
+      var(--space-8)
+    );
+
+    margin-bottom: 0;
+  }
+
+  .final-cta__form {
+    display: grid;
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+    gap: var(--space-5);
+
+    padding: clamp(
+      var(--space-6),
+      4vw,
+      var(--space-10)
+    );
+
+    border-radius: var(--radius-lg);
+
+    background: var(--color-white);
+
+    box-shadow: var(--shadow-lg);
+  }
+
+  .final-cta__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .final-cta__field--full {
+    grid-column: 1 / -1;
+  }
+
+  .final-cta__submit {
+    grid-column: 1 / -1;
+
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 900px) {
+    .final-cta__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .final-cta__heading {
+      position: static;
+
+      max-width: 720px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .final-cta__form {
+      grid-template-columns: 1fr;
+    }
+
+    .final-cta__field,
+    .final-cta__field--full,
+    .final-cta__submit {
+      grid-column: 1;
+    }
+
+    .final-cta__submit .button {
+      width: 100%;
+    }
+  }
+</style>
