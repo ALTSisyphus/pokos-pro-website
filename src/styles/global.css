@@ -20,14 +20,13 @@
    ========================================================================== */
 
 /**
- * Шрифты соответствуют визуальному направлению референса Montro:
- * - Montserrat — заголовки и акцентные элементы;
- * - Roboto — основной текст.
+ * Шрифты регистрируются через Astro Fonts API
+ * в astro.config.mjs и подключаются в BaseLayout.astro
+ * через компонент <Font />.
  *
- * На следующем этапе шрифты можно перенести в public/fonts
- * и подключить локально через @font-face.
+ * CSS-переменные --font-montserrat и --font-roboto
+ * создаются Astro автоматически.
  */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap');
 
 
 /* ==========================================================================
@@ -66,20 +65,11 @@
 
 
   /* ------------------------------------------------------------------------
-     Typography
-     ------------------------------------------------------------------------ */
+   Typography
+   ------------------------------------------------------------------------ */
 
-  --font-heading:
-    'Montserrat',
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  --font-body:
-    'Roboto',
-    Arial,
-    Helvetica,
-    sans-serif;
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-roboto);
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
