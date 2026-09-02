@@ -10,8 +10,10 @@
  *
  * Компонент используется на главной странице сайта.
  *
- * Обработка и отправка формы будут реализованы
- * на отдельном этапе разработки.
+ * Временно:
+ * - форма не отправляет данные на сервер;
+ * - отправка будет подключена после реализации
+ *   серверного обработчика заявок.
  */
 ---
 
@@ -35,7 +37,10 @@
         </p>
       </header>
 
-      <form class="final-cta__form">
+      <form
+        class="final-cta__form"
+        data-contact-form
+      >
         <div class="final-cta__field">
           <label for="name">
             Имя
@@ -60,6 +65,7 @@
             name="phone"
             type="tel"
             autocomplete="tel"
+            inputmode="tel"
             required
           />
         </div>
@@ -84,10 +90,34 @@
             Отправить заявку
           </button>
         </div>
+
+        <p
+          class="final-cta__status"
+          data-contact-form-status
+          role="status"
+          aria-live="polite"
+        ></p>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  const form =
+    document.querySelector<HTMLFormElement>('[data-contact-form]');
+
+  const status =
+    document.querySelector<HTMLElement>('[data-contact-form-status]');
+
+  if (form && status) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      status.textContent =
+        'Отправка формы пока не подключена. Введённые данные не были отправлены.';
+    });
+  }
+</script>
 
 <style>
   .final-cta {
@@ -103,6 +133,7 @@
     grid-template-columns:
       minmax(0, 0.85fr)
       minmax(0, 1.15fr);
+
     gap: clamp(
       var(--space-10),
       7vw,
@@ -114,6 +145,7 @@
 
   .final-cta__heading {
     position: sticky;
+
     top: calc(
       var(--header-height) +
       var(--space-8)
@@ -124,10 +156,12 @@
 
   .final-cta__form {
     display: grid;
+
     grid-template-columns: repeat(
       2,
       minmax(0, 1fr)
     );
+
     gap: var(--space-5);
 
     padding: clamp(
@@ -146,6 +180,7 @@
   .final-cta__field {
     display: flex;
     flex-direction: column;
+
     gap: var(--space-2);
   }
 
@@ -157,6 +192,16 @@
     grid-column: 1 / -1;
 
     margin-top: var(--space-2);
+  }
+
+  .final-cta__status {
+    grid-column: 1 / -1;
+
+    min-height: 1.5em;
+
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
   }
 
   @media (max-width: 900px) {
@@ -178,7 +223,8 @@
 
     .final-cta__field,
     .final-cta__field--full,
-    .final-cta__submit {
+    .final-cta__submit,
+    .final-cta__status {
       grid-column: 1;
     }
 
