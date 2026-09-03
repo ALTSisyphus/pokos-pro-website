@@ -61,41 +61,6 @@
         <li>Подход под состояние участка</li>
       </ul>
     </div>
-
-    <aside
-      class="hero__work-scope"
-      aria-label="Основные направления работ"
-    >
-      <div class="hero__work-scope-header">
-        <p>С чем поможем</p>
-        <span aria-hidden="true">ПРО / 01</span>
-      </div>
-
-      <ol class="hero__services">
-        <li>
-          <span aria-hidden="true">01</span>
-          <strong>Покос травы</strong>
-          <p>Регулярный уход за территорией</p>
-        </li>
-
-        <li>
-          <span aria-hidden="true">02</span>
-          <strong>Высокая трава</strong>
-          <p>Работа с густой растительностью</p>
-        </li>
-
-        <li>
-          <span aria-hidden="true">03</span>
-          <strong>Расчистка участка</strong>
-          <p>Подготовка территории к дальнейшим работам</p>
-        </li>
-      </ol>
-
-      <p class="hero__work-scope-note">
-        Способ выполнения работ подбирается с учётом особенностей
-        и текущего состояния участка.
-      </p>
-    </aside>
   </div>
 </section>
 
@@ -115,7 +80,7 @@
     right: 0;
     bottom: 0;
 
-    width: max(31vw, 420px);
+    width: max(24vw, 320px);
 
     border-left: 1px solid var(--color-border);
     background: var(--color-background-muted);
@@ -125,19 +90,33 @@
     pointer-events: none;
   }
 
+  .hero::after {
+    position: absolute;
+    top: 50%;
+    right: clamp(2rem, 7vw, 7rem);
+
+    width: clamp(140px, 15vw, 220px);
+    height: clamp(140px, 15vw, 220px);
+
+    border-top: 1px solid var(--color-border-strong);
+    border-right: 1px solid var(--color-border-strong);
+
+    content: '';
+
+    opacity: 0.55;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
   .hero__inner {
     position: relative;
 
     z-index: var(--z-base);
 
-    display: grid;
-    grid-template-columns:
-      minmax(0, 1.25fr)
-      minmax(340px, 0.75fr);
+    display: flex;
     align-items: center;
-    gap: clamp(var(--space-12), 7vw, var(--space-24));
 
-    min-height: 650px;
+    min-height: clamp(610px, calc(100svh - var(--header-height)), 760px);
 
     padding-block: clamp(var(--space-16), 7vw, var(--space-24));
   }
@@ -146,7 +125,7 @@
     display: grid;
     justify-items: start;
 
-    max-width: 760px;
+    width: min(100%, 860px);
   }
 
   .hero__eyebrow {
@@ -177,7 +156,7 @@
   }
 
   .hero h1 {
-    max-width: 14ch;
+    max-width: 15ch;
 
     text-wrap: balance;
   }
@@ -272,127 +251,13 @@
     content: '';
   }
 
-  .hero__work-scope {
-    position: relative;
-
-    display: grid;
-    align-self: stretch;
-    align-content: space-between;
-
-    min-height: 470px;
-
-    padding: clamp(var(--space-8), 4vw, var(--space-12));
-
-    overflow: hidden;
-
-    background: var(--color-background-dark);
-    color: rgba(255, 255, 255, 0.76);
-
-    box-shadow: var(--shadow-sm);
-  }
-
-  .hero__work-scope::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-
-    width: 6px;
-
-    background: var(--color-primary);
-
-    content: '';
-  }
-
-  .hero__work-scope-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-
-    padding-bottom: var(--space-5);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .hero__work-scope-header p {
-    color: var(--color-white);
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-  }
-
-  .hero__work-scope-header span {
-    color: rgba(255, 255, 255, 0.5);
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--letter-spacing-wide);
-  }
-
-  .hero__services {
-    list-style: none;
-  }
-
-  .hero__services li {
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: var(--space-1) var(--space-4);
-
-    padding-block: var(--space-5);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .hero__services li > span {
-    grid-row: 1 / span 2;
-
-    color: #a8c9ad;
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: var(--letter-spacing-wide);
-  }
-
-  .hero__services strong {
-    color: var(--color-white);
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-md);
-    line-height: 1.35;
-  }
-
-  .hero__services p {
-    color: rgba(255, 255, 255, 0.65);
-
-    font-size: var(--font-size-sm);
-    line-height: 1.55;
-  }
-
-  .hero__work-scope-note {
-    margin-top: var(--space-5);
-
-    color: rgba(255, 255, 255, 0.72);
-
-    font-size: var(--font-size-sm);
-    line-height: 1.6;
-  }
-
-  @media (max-width: 960px) {
-    .hero::before {
+  @media (max-width: 1100px) {
+    .hero::before,
+    .hero::after {
       display: none;
     }
 
     .hero__inner {
-      grid-template-columns: 1fr;
-      gap: var(--space-12);
-
       min-height: auto;
 
       padding-block: var(--space-16);
@@ -401,43 +266,10 @@
     .hero__content {
       max-width: 760px;
     }
-
-    .hero__work-scope {
-      min-height: auto;
-    }
-
-    .hero__services {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .hero__services li {
-      grid-template-columns: 1fr;
-
-      padding-inline: var(--space-5);
-
-      border-right: 1px solid rgba(255, 255, 255, 0.14);
-      border-bottom: 0;
-    }
-
-    .hero__services li:first-child {
-      padding-left: 0;
-    }
-
-    .hero__services li:last-child {
-      padding-right: 0;
-      border-right: 0;
-    }
-
-    .hero__services li > span {
-      grid-row: auto;
-    }
   }
 
   @media (max-width: 680px) {
     .hero__inner {
-      gap: var(--space-10);
-
       padding-block: var(--space-12) var(--space-14);
     }
 
@@ -476,31 +308,6 @@
 
       margin-top: var(--space-6);
       padding-top: var(--space-4);
-    }
-
-    .hero__work-scope {
-      padding: var(--space-6);
-    }
-
-    .hero__services {
-      display: block;
-    }
-
-    .hero__services li {
-      grid-template-columns: 28px 1fr;
-
-      padding-inline: 0;
-
-      border-right: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .hero__services li > span {
-      grid-row: 1 / span 2;
-    }
-
-    .hero__work-scope-note {
-      margin-top: var(--space-4);
     }
   }
 </style>
