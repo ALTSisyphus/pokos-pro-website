@@ -1,124 +1,74 @@
 ---
-/**
- * Раздел часто задаваемых вопросов.
- *
- * Назначение:
- * - ответить на основные вопросы потенциальных клиентов;
- * - объяснить особенности заказа и выполнения работ;
- * - уменьшить количество неопределённости перед оформлением заявки.
- *
- * Компонент используется на главной странице сайта.
- */
+/** FAQ в виде строгого аккордеона без карточек. */
+const questions = [
+  {
+    question: 'От чего зависит стоимость?',
+    answer: 'От площади, высоты и плотности травы, рельефа и дополнительных работ.',
+  },
+  {
+    question: 'Можно ли заказать срочный выезд?',
+    answer: 'Да, если в графике есть свободное окно. Возможность подтверждаем при обращении.',
+  },
+  {
+    question: 'Вы работаете в выходные?',
+    answer: 'График выездов согласуется индивидуально при оформлении заявки.',
+  },
+  {
+    question: 'Как подготовить участок к покосу?',
+    answer: 'Желательно убрать предметы, которые могут повредить технику или быть скрыты в траве.',
+  },
+] as const;
 ---
 
-<section
-  id="faq"
-  class="section faq"
-  aria-labelledby="faq-title"
->
-  <div class="container--narrow">
-    <header class="section-heading">
-      <h2
-        id="faq-title"
-        class="section-heading__title"
-      >
-        Частые вопросы
-      </h2>
-
-      <p class="section-heading__description">
-        Ответы на основные вопросы о покосе и организации работ.
-      </p>
-    </header>
+<section id="faq" class="faq" aria-labelledby="faq-title">
+  <div class="faq__inner">
+    <h2 id="faq-title">Частые вопросы</h2>
 
     <div class="faq__list">
-      <details class="faq__item">
-        <summary>
-          От чего зависит стоимость покоса?
-        </summary>
-
-        <div class="faq__answer">
-          <p>
-            Стоимость зависит от площади участка, высоты и густоты травы,
-            состояния территории и сложности выполнения работ.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq__item">
-        <summary>
-          Можно ли заказать покос запущенного участка?
-        </summary>
-
-        <div class="faq__answer">
-          <p>
-            Да. Возможность и объём работ определяются с учётом состояния
-            конкретного участка.
-          </p>
-        </div>
-      </details>
-
-      <details class="faq__item">
-        <summary>
-          Как заказать услугу?
-        </summary>
-
-        <div class="faq__answer">
-          <p>
-            Оставьте заявку и сообщите основную информацию об участке.
-            После этого можно будет уточнить объём и стоимость работ.
-          </p>
-        </div>
-      </details>
+      {questions.map((item) => (
+        <details class="faq__item">
+          <summary>
+            <span>{item.question}</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
+  .faq {
+    background: var(--color-background);
+  }
+
+  .faq__inner {
+    padding: clamp(1.8rem, 3.5vw, 3rem);
+  }
+
   .faq__list {
-    display: grid;
-    gap: var(--space-3);
+    margin-top: 1.3rem;
+    border: 1px solid var(--color-border);
+    border-bottom: 0;
   }
 
   .faq__item {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-
+    border-bottom: 1px solid var(--color-border);
     background: var(--color-white);
-
-    transition:
-      border-color var(--transition-base),
-      box-shadow var(--transition-base);
-  }
-
-  .faq__item:hover,
-  .faq__item[open] {
-    border-color: color-mix(
-      in srgb,
-      var(--color-primary) 55%,
-      var(--color-border)
-    );
-
-    box-shadow: var(--shadow-xs);
   }
 
   .faq__item summary {
-    position: relative;
-
-    padding:
-      var(--space-6)
-      calc(var(--space-12) + var(--space-2))
-      var(--space-6)
-      var(--space-6);
-
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    min-height: 58px;
+    padding: 0.8rem 1rem;
     color: var(--color-heading);
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-heading);
-
+    font-size: 0.82rem;
+    font-weight: 500;
     cursor: pointer;
-
     list-style: none;
   }
 
@@ -126,46 +76,28 @@
     display: none;
   }
 
-  .faq__item summary::before,
-  .faq__item summary::after {
-    position: absolute;
-    top: 50%;
-    right: var(--space-6);
-
-    width: 14px;
-    height: 2px;
-
-    border-radius: var(--radius-pill);
-
-    background: var(--color-primary);
-
-    content: '';
-
-    transform: translateY(-50%);
-
+  .faq__plus {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
     transition: transform var(--transition-base);
   }
 
-  .faq__item summary::after {
-    transform:
-      translateY(-50%)
-      rotate(90deg);
+  .faq__item[open] .faq__plus {
+    color: var(--color-primary);
+    transform: rotate(45deg);
   }
 
-  .faq__item[open] summary::after {
-    transform:
-      translateY(-50%)
-      rotate(0);
+  .faq__item p {
+    max-width: 62ch;
+    padding: 0 2.5rem 1rem 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
   }
 
-  .faq__answer {
-    padding:
-      0
-      var(--space-6)
-      var(--space-6);
-  }
-
-  .faq__answer p {
-    color: var(--color-text);
+  @media (max-width: 580px) {
+    .faq__inner {
+      padding: 1.5rem 1.35rem;
+    }
   }
 </style>

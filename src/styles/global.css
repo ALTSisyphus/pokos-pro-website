@@ -1,120 +1,55 @@
 /**
- * Глобальная система стилей сайта «Покос ПРО».
+ * Глобальная дизайн-система сайта «Покос ПРО».
  *
- * Назначение:
- * - определять дизайн-токены проекта;
- * - выполнять базовый CSS reset;
- * - задавать глобальную типографику;
- * - определять контейнеры и базовый вертикальный ритм;
- * - предоставлять переиспользуемые примитивы интерфейса;
- * - обеспечивать единое адаптивное поведение сайта.
- *
- * Важно:
- * Стили конкретных секций главной страницы должны оставаться
- * внутри соответствующих Astro-компонентов.
+ * Визуальное направление:
+ * - строгая модульная сетка;
+ * - прямые линии и крупные плоскости;
+ * - минимум декоративного шума;
+ * - бирюзово-зелёный как единственный сильный акцент.
  */
-
-
-/* ==========================================================================
-   Fonts
-   ========================================================================== */
-
-/**
- * Шрифты регистрируются через Astro Fonts API
- * в astro.config.mjs и подключаются в BaseLayout.astro
- * через компонент <Font />.
- *
- * CSS-переменные --font-montserrat и --font-roboto
- * создаются Astro автоматически.
- */
-
-
-/* ==========================================================================
-   Design tokens
-   ========================================================================== */
 
 :root {
-  /* ------------------------------------------------------------------------
-     Colors
-     ------------------------------------------------------------------------ */
+  --color-primary: #169f82;
+  --color-primary-hover: #11866e;
+  --color-primary-dark: #0c735f;
+  --color-primary-soft: #e9f5f1;
 
-  --color-primary: #35bfa4;
-  --color-primary-hover: #2aab92;
-  --color-primary-active: #23957f;
-  --color-primary-soft: #e7f0e7;
-  --color-focus: #18211f;
-
-  --color-heading: #19231b;
-  --color-text: #18211f;
-  --color-text-muted: #66716e;
-
+  --color-heading: #101820;
+  --color-text: #222b30;
+  --color-text-muted: #687277;
   --color-white: #ffffff;
-  --color-black: #000000;
-
   --color-background: #ffffff;
-  --color-background-soft: #f4f7f6;
-  --color-background-muted: #e9eee8;
-  --color-background-dark: #17271c;
+  --color-background-soft: #ffffff;
+  --color-border: #dce3e0;
+  --color-border-strong: #c8d2ce;
+  --color-focus: #0c735f;
 
-  --color-border: #d9e1de;
-  --color-border-strong: #b8c5c1;
-
-  --color-overlay: rgba(14, 22, 16, 0.62);
-
-  --color-success: #2e9f43;
-  --color-error: #c83e3e;
-
-
-  /* ------------------------------------------------------------------------
-   Typography
-   ------------------------------------------------------------------------ */
-
-  --font-heading: var(--font-montserrat);
-  --font-body: var(--font-roboto);
+  --font-heading: var(--font-montserrat), Arial, sans-serif;
+  --font-body: var(--font-roboto), Arial, sans-serif;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
+  --font-size-md: 1.0625rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.5rem;
-
-  --font-size-h6: 1.125rem;
-  --font-size-h5: 1.25rem;
-  --font-size-h4: clamp(1.375rem, 1.25rem + 0.4vw, 1.5rem);
-  --font-size-h3: clamp(1.5rem, 1.3rem + 0.65vw, 1.75rem);
-  --font-size-h2: clamp(2rem, 1.65rem + 1.15vw, 2.625rem);
-  --font-size-h1: clamp(2.5rem, 1.8rem + 2.8vw, 4.75rem);
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --line-height-tight: 1.1;
-  --line-height-heading: 1.3;
-  --line-height-base: 1.65;
-  --line-height-relaxed: 1.72;
+  --line-height-tight: 1;
+  --line-height-heading: 1.12;
+  --line-height-base: 1.55;
+  --line-height-relaxed: 1.68;
 
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0;
+  --letter-spacing-tight: -0.045em;
   --letter-spacing-wide: 0.08em;
 
-
-  /* ------------------------------------------------------------------------
-     Layout
-     ------------------------------------------------------------------------ */
-
-  --container-width: 1240px;
-  --container-narrow-width: 850px;
-  --container-padding: clamp(1rem, 0.5rem + 2vw, 2rem);
-
+  --container-width: 1440px;
+  --container-padding: clamp(1.25rem, 4vw, 3.75rem);
   --header-height: 76px;
-
-
-  /* ------------------------------------------------------------------------
-     Spacing
-     ------------------------------------------------------------------------ */
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -128,63 +63,14 @@
   --space-14: 3.5rem;
   --space-16: 4rem;
   --space-20: 5rem;
-  --space-24: 6rem;
-  --space-28: 7rem;
-  --space-32: 8rem;
-
-  --section-space: clamp(4rem, 7vw, 7rem);
-  --section-space-small: clamp(3rem, 5vw, 4.5rem);
-
-  --content-gap: clamp(1.5rem, 3vw, 2.5rem);
-  --grid-gap: clamp(1.25rem, 2.5vw, 2rem);
-
-
-  /* ------------------------------------------------------------------------
-     Border radius
-     ------------------------------------------------------------------------ */
-
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
-  --radius-pill: 999px;
-
-
-  /* ------------------------------------------------------------------------
-     Shadows
-     ------------------------------------------------------------------------ */
-
-  --shadow-xs: 0 2px 8px rgba(22, 30, 57, 0.05);
-  --shadow-sm: 0 8px 24px rgba(22, 30, 57, 0.08);
-  --shadow-md: 0 16px 40px rgba(22, 30, 57, 0.12);
-  --shadow-lg: 0 24px 64px rgba(22, 30, 57, 0.16);
-
-
-  /* ------------------------------------------------------------------------
-     Motion
-     ------------------------------------------------------------------------ */
 
   --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
-
-
-  /* ------------------------------------------------------------------------
-     Z-index
-     ------------------------------------------------------------------------ */
+  --transition-base: 220ms ease;
 
   --z-base: 1;
   --z-header: 100;
-  --z-dropdown: 200;
-  --z-overlay: 500;
   --z-modal: 1000;
 }
-
-
-/* ==========================================================================
-   Reset
-   ========================================================================== */
 
 *,
 *::before,
@@ -194,10 +80,8 @@
 
 html {
   min-width: 320px;
-
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -237,11 +121,6 @@ canvas {
   max-width: 100%;
 }
 
-img,
-picture {
-  height: auto;
-}
-
 input,
 button,
 textarea,
@@ -271,30 +150,16 @@ textarea {
   resize: vertical;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-
-/* ==========================================================================
-   Document
-   ========================================================================== */
-
 body {
   min-width: 320px;
   min-height: 100vh;
-
   background: var(--color-background);
   color: var(--color-text);
-
   font-family: var(--font-body);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-base);
-
   text-rendering: optimizeLegibility;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -303,24 +168,15 @@ main {
   display: block;
 }
 
-section {
-  position: relative;
-}
-
 ::selection {
-  background: var(--color-primary-active);
+  background: var(--color-primary);
   color: var(--color-white);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
+  outline: 2px solid var(--color-focus);
   outline-offset: 3px;
 }
-
-
-/* ==========================================================================
-   Typography
-   ========================================================================== */
 
 h1,
 h2,
@@ -329,352 +185,64 @@ h4,
 h5,
 h6 {
   color: var(--color-heading);
-
   font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-heading);
-
   letter-spacing: var(--letter-spacing-tight);
 }
 
 h1 {
-  font-size: var(--font-size-h1);
-  line-height: var(--line-height-tight);
+  font-size: clamp(3.25rem, 5.8vw, 5.65rem);
+  line-height: 0.96;
 }
 
 h2 {
-  font-size: var(--font-size-h2);
+  font-size: clamp(1.75rem, 2.25vw, 2.35rem);
 }
 
 h3 {
-  font-size: var(--font-size-h3);
-}
-
-h4 {
-  font-size: var(--font-size-h4);
-}
-
-h5 {
-  font-size: var(--font-size-h5);
-}
-
-h6 {
-  font-size: var(--font-size-h6);
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
 }
 
 p {
   line-height: var(--line-height-relaxed);
 }
 
-strong,
-b {
-  font-weight: var(--font-weight-bold);
-}
-
-small {
-  font-size: var(--font-size-sm);
-}
-
 a {
   color: inherit;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
-
-  transition:
-    color var(--transition-base),
-    text-decoration-color var(--transition-base);
-}
-
-:where(a[class]) {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration-color: var(--color-primary);
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-hr {
-  height: 1px;
-
-  margin: var(--space-8) 0;
-
-  border: 0;
-  background: var(--color-border);
-}
-
-
-/* ==========================================================================
-   Form controls
-   ========================================================================== */
-
-input,
-textarea,
-select {
-  width: 100%;
-
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xs);
-
-  background: var(--color-white);
-
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-input,
-select {
-  min-height: 50px;
-  padding: 0 var(--space-4);
-}
-
-textarea {
-  min-height: 140px;
-  padding: var(--space-4);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-text-muted);
-  opacity: 0.8;
-}
-
-input:hover,
-textarea:hover,
-select:hover {
-  border-color: var(--color-border-strong);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--color-focus);
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-
-  box-shadow: none;
-}
-
-label {
-  color: var(--color-heading);
-
-  font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-}
-
-
-/* ==========================================================================
-   Layout containers
-   ========================================================================== */
-
-/**
- * Основной контейнер сайта.
- *
- * Контент ограничен максимальной шириной и сохраняет
- * плавные адаптивные поля по краям экрана.
- */
 .container {
   width: min(
     calc(100% - (var(--container-padding) * 2)),
     var(--container-width)
   );
-
   margin-inline: auto;
 }
-
-
-/**
- * Узкий контейнер для текстовых секций,
- * FAQ, формы и крупных заголовков.
- */
-.container--narrow {
-  width: min(
-    calc(100% - (var(--container-padding) * 2)),
-    var(--container-narrow-width)
-  );
-
-  margin-inline: auto;
-}
-
-
-/* ==========================================================================
-   Section primitives
-   ========================================================================== */
-
-.section {
-  padding-block: var(--section-space);
-}
-
-.section--small {
-  padding-block: var(--section-space-small);
-}
-
-.section--soft {
-  background: var(--color-background-soft);
-}
-
-.section--dark {
-  background: var(--color-background-dark);
-  color: rgba(255, 255, 255, 0.76);
-}
-
-.section--dark h1,
-.section--dark h2,
-.section--dark h3,
-.section--dark h4,
-.section--dark h5,
-.section--dark h6 {
-  color: var(--color-white);
-}
-
-
-/* ==========================================================================
-   Section heading
-   ========================================================================== */
-
-/**
- * Унифицированный заголовок секции.
- *
- * Предназначен для Services, Benefits, WorksPreview,
- * Pricing, ServiceArea, FAQ и BlogPreview.
- */
-.section-heading {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-
-  max-width: 720px;
-
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
-}
-
-.section-heading--center {
-  align-items: center;
-
-  margin-inline: auto;
-
-  text-align: center;
-}
-
-.section-heading__eyebrow {
-  color: var(--color-primary);
-
-  font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-}
-
-.section-heading__title {
-  text-wrap: balance;
-}
-
-.section-heading__description {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-md);
-}
-
-.section--dark .section-heading__description {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-
-/* ==========================================================================
-   Grid primitives
-   ========================================================================== */
-
-.grid {
-  display: grid;
-  gap: var(--grid-gap);
-}
-
-.grid--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-
-/* ==========================================================================
-   Card primitive
-   ========================================================================== */
-
-.card {
-  height: 100%;
-
-  padding: clamp(1.5rem, 3vw, 2rem);
-
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-
-  background: var(--color-white);
-
-  box-shadow: var(--shadow-xs);
-
-  transition:
-    transform var(--transition-base),
-    border-color var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.card:hover {
-  border-color: color-mix(
-    in srgb,
-    var(--color-primary) 45%,
-    var(--color-border)
-  );
-
-  box-shadow: var(--shadow-sm);
-
-  transform: translateY(-4px);
-}
-
-
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
 
 .button {
   display: inline-flex;
+  min-height: 50px;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-
-  min-height: 52px;
-
-  padding-inline: var(--space-8);
-
+  padding: 0 1.75rem;
   border: 1px solid transparent;
-  border-radius: var(--radius-xs);
-
+  border-radius: 0;
   font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
+  font-size: 0.82rem;
   font-weight: var(--font-weight-bold);
   line-height: 1;
-
-  text-align: center;
-  text-decoration: none;
-
   transition:
-    color var(--transition-base),
     background-color var(--transition-base),
     border-color var(--transition-base),
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
-}
-
-.button:hover {
-  transform: translateY(-2px);
-}
-
-.button:active {
-  transform: translateY(0);
+    color var(--transition-base);
 }
 
 .button--primary {
@@ -684,61 +252,93 @@ label {
 
 .button--primary:hover {
   background: var(--color-primary-hover);
-  box-shadow: var(--shadow-sm);
 }
 
-.button--primary:active {
-  background: var(--color-primary-active);
-}
-
-.button--dark {
-  background: var(--color-background-dark);
-  color: var(--color-white);
-}
-
-.button--dark:hover {
-  background: var(--color-heading);
-  box-shadow: var(--shadow-sm);
-}
-
-.button--outline {
-  border-color: var(--color-border-strong);
+.button--light {
+  border-color: var(--color-white);
   background: var(--color-white);
   color: var(--color-heading);
 }
 
-.button--outline:hover {
+.button--light:hover {
+  background: transparent;
+  color: var(--color-white);
+}
+
+.button--ghost {
+  border-color: var(--color-border-strong);
+  background: transparent;
+  color: var(--color-heading);
+}
+
+.button--ghost:hover {
   border-color: var(--color-primary);
-  background: var(--color-primary-soft);
   color: var(--color-primary);
 }
 
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
 
-/* ==========================================================================
-   Accessibility helpers
-   ========================================================================== */
+.section-kicker::before {
+  width: 30px;
+  height: 2px;
+  background: currentColor;
+  content: '';
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  background: var(--color-white);
+}
+
+input,
+select {
+  min-height: 50px;
+  padding: 0 1rem;
+}
+
+textarea {
+  min-height: 132px;
+  padding: 0.9rem 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7a858a;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
 
 .skip-link {
   position: fixed;
-  top: var(--space-3);
-  left: var(--space-3);
-
+  top: 0.75rem;
+  left: 0.75rem;
   z-index: var(--z-modal);
-
-  padding: var(--space-3) var(--space-5);
-
-  border-radius: var(--radius-xs);
-
-  background: var(--color-background-dark);
+  padding: 0.75rem 1rem;
+  background: var(--color-heading);
   color: var(--color-white);
-
   font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  text-decoration: none;
-
-  transform: translateY(calc(-100% - var(--space-6)));
-  transition: transform var(--transition-fast);
+  font-weight: 700;
+  transform: translateY(-200%);
 }
 
 .skip-link:focus-visible {
@@ -747,91 +347,37 @@ label {
 
 .visually-hidden {
   position: absolute !important;
-
   width: 1px !important;
   height: 1px !important;
-
   padding: 0 !important;
   margin: -1px !important;
-
   overflow: hidden !important;
-
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
-
   border: 0 !important;
 }
 
-
-/* ==========================================================================
-   Small utilities
-   ========================================================================== */
-
-.text-center {
-  text-align: center;
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-
-.text-white {
-  color: var(--color-white);
-}
-
-.bg-soft {
-  background: var(--color-background-soft);
-}
-
-.bg-dark {
-  background: var(--color-background-dark);
-}
-
-
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
-
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   :root {
-    --header-height: 72px;
+    --header-height: 70px;
+    --container-padding: 1.25rem;
   }
 
-  .grid--3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  h1 {
+    font-size: clamp(2.8rem, 11vw, 4.6rem);
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 560px) {
   :root {
-    --header-height: 68px;
-
-    --section-space: 3.75rem;
-    --section-space-small: 3rem;
-  }
-
-  .grid--2,
-  .grid--3 {
-    grid-template-columns: 1fr;
-  }
-
-  .section-heading {
-    margin-bottom: var(--space-8);
-  }
-
-  .section-heading__description {
-    font-size: var(--font-size-base);
+    --container-padding: 1rem;
   }
 
   .button {
-    min-height: 50px;
-    padding-inline: var(--space-6);
+    min-height: 48px;
+    padding-inline: 1.25rem;
   }
 }
-
-/* ==========================================================================
-   Reduced motion
-   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -847,3 +393,421 @@ label {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================
+   Pokos PRO — reference fidelity calibration
+   Финальная калибровка размеров, ритма и типографики.
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Header
+   ---------------------------------------------------------- */
+
+.site-header {
+  min-height: 72px;
+}
+
+.site-header__inner {
+  min-height: 72px;
+}
+
+.site-header__brand {
+  gap: 1.15rem;
+}
+
+.site-header__logo {
+  font-size: 1.55rem;
+  letter-spacing: -0.045em;
+}
+
+.site-header__descriptor {
+  max-width: 125px;
+  font-size: 0.68rem;
+  line-height: 1.25;
+}
+
+.site-header__nav {
+  gap: clamp(1.25rem, 1.8vw, 2rem);
+}
+
+.site-header__nav a {
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.site-header .button {
+  min-height: 46px;
+  padding-inline: 1.65rem;
+  font-size: 0.76rem;
+}
+
+
+/* ----------------------------------------------------------
+   Hero
+   ---------------------------------------------------------- */
+
+.hero__content {
+  min-height: 430px;
+  max-width: 1020px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.hero h1 {
+  max-width: 8.6ch;
+  font-size: clamp(3.9rem, 6vw, 6.35rem);
+  line-height: 0.93;
+  letter-spacing: -0.065em;
+}
+
+.hero__description {
+  max-width: 720px;
+  margin-top: 1.2rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.hero__actions {
+  margin-top: 1.45rem;
+}
+
+.hero__proof {
+  max-width: 720px;
+  margin-top: 1.45rem;
+  padding-top: 1rem;
+}
+
+.hero__proof li {
+  font-size: 0.73rem;
+}
+
+
+/* ----------------------------------------------------------
+   Section typography
+   ---------------------------------------------------------- */
+
+.section-kicker {
+  margin-bottom: 0.9rem;
+}
+
+.section-title,
+.services h2,
+.benefits h2,
+.works-preview h2,
+.pricing h2,
+.service-area h2,
+.faq h2,
+.blog-preview h2 {
+  font-size: clamp(1.75rem, 2.15vw, 2.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+
+/* ----------------------------------------------------------
+   Services
+   ---------------------------------------------------------- */
+
+.services__intro,
+.services__item {
+  padding-top: clamp(2rem, 3vw, 3rem);
+  padding-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.services__number {
+  font-size: 1.65rem;
+}
+
+.services__item h3 {
+  margin-top: 0.85rem;
+  font-size: 1.1rem;
+}
+
+.services__item p {
+  max-width: 240px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   Benefits
+   ---------------------------------------------------------- */
+
+.benefits__intro,
+.benefits__featured,
+.benefits__item {
+  padding-top: clamp(2.25rem, 3vw, 3rem);
+  padding-bottom: clamp(2.25rem, 3vw, 3rem);
+}
+
+.benefits__featured h3,
+.benefits__item h3 {
+  font-size: 1.1rem;
+}
+
+.benefits__intro p,
+.benefits__featured p,
+.benefits__item p {
+  font-size: 0.81rem;
+  line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   Works + Pricing
+   ---------------------------------------------------------- */
+
+.works-preview,
+.pricing {
+  min-height: 380px;
+}
+
+.works-preview__inner,
+.pricing__inner {
+  padding-top: clamp(2.25rem, 3.2vw, 3.25rem);
+  padding-bottom: clamp(2.25rem, 3.2vw, 3.25rem);
+}
+
+
+/* ----------------------------------------------------------
+   Service area + FAQ
+   ---------------------------------------------------------- */
+
+.service-area__inner,
+.faq__inner {
+  min-height: 330px;
+}
+
+.service-area__inner {
+  padding-top: 2.6rem;
+  padding-bottom: 2.6rem;
+}
+
+.service-area__copy p {
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.service-area__list li {
+  font-size: 0.78rem;
+}
+
+.faq__inner {
+  padding-top: 2.6rem;
+  padding-bottom: 2.6rem;
+}
+
+
+/* ----------------------------------------------------------
+   Blog + CTA
+   ---------------------------------------------------------- */
+
+.blog-preview__inner,
+.final-cta__inner {
+  min-height: 360px;
+}
+
+.blog-preview__inner {
+  padding-top: 2.65rem;
+  padding-bottom: 2.65rem;
+}
+
+.final-cta__inner {
+  padding-top: 2.65rem;
+  padding-bottom: 2.65rem;
+}
+
+
+/* ----------------------------------------------------------
+   Desktop container
+   ---------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+  .site-container,
+  .page-grid {
+    width: min(calc(100% - 72px), 1440px);
+    margin-inline: auto;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   Tablet / Mobile
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hero__content {
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.4rem, 11vw, 5.25rem);
+  }
+
+  .works-preview,
+  .pricing,
+  .service-area__inner,
+  .faq__inner,
+  .blog-preview__inner,
+  .final-cta__inner {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero h1 {
+    font-size: clamp(3rem, 14vw, 4.4rem);
+  }
+
+  .hero__description {
+    font-size: 0.94rem;
+  }
+}
+
+
+/* ==========================================================
+   Pokos PRO — final reference calibration
+   Верхняя часть страницы: header + hero + services.
+   ========================================================== */
+
+/* Header ближе к пропорциям референса */
+.site-header,
+.site-header__inner {
+  min-height: 64px;
+}
+
+.site-header__logo {
+  font-size: 1.45rem;
+}
+
+.site-header__descriptor {
+  font-size: 0.64rem;
+  line-height: 1.2;
+}
+
+.site-header__nav {
+  gap: clamp(1rem, 1.55vw, 1.65rem);
+}
+
+.site-header__nav a {
+  font-size: 0.72rem;
+}
+
+.site-header .button {
+  min-height: 42px;
+  padding-inline: 1.45rem;
+}
+
+
+/* Hero — убираем ощущение пустого высокого блока */
+.hero__content {
+  min-height: 390px;
+  max-width: 960px;
+  padding:
+    clamp(2.4rem, 3.5vw, 3.4rem)
+    clamp(2.7rem, 5vw, 5rem);
+}
+
+.hero h1 {
+  max-width: 8.7ch;
+  font-size: clamp(3.7rem, 5.55vw, 5.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.hero__description {
+  max-width: 610px;
+  margin-top: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.hero__actions {
+  gap: 1.4rem;
+  margin-top: 1.35rem;
+}
+
+.hero__proof {
+  max-width: 650px;
+  margin-top: 1.35rem;
+  padding-top: 0.9rem;
+}
+
+.hero__proof li {
+  font-size: 0.69rem;
+}
+
+
+/* Services — чуть компактнее по вертикали */
+.services__intro,
+.services__item {
+  min-height: 185px;
+  padding-top: 2.1rem;
+  padding-bottom: 2.1rem;
+}
+
+.services__number {
+  font-size: 1.5rem;
+}
+
+.services__item h3 {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+}
+
+.services__item p {
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+
+/* Основные заголовки секций */
+.services h2,
+.benefits h2,
+.works-preview h2,
+.pricing h2,
+.service-area h2,
+.faq h2,
+.blog-preview h2 {
+  font-size: clamp(1.65rem, 2vw, 2rem);
+  line-height: 1.05;
+}
+
+
+/* Desktop — сохраняем широкую архитектурную сетку */
+@media (min-width: 1200px) {
+  .site-container,
+  .page-grid {
+    width: min(calc(100% - 72px), 1440px);
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero__content {
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.3rem, 11vw, 5rem);
+  }
+
+  .services__intro,
+  .services__item {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero__content {
+    padding: 2.6rem 1.35rem 2.3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 14vw, 4.25rem);
+  }
+}
+

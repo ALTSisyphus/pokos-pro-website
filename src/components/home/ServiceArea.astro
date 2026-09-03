@@ -1,106 +1,111 @@
 ---
-/**
- * Раздел географии оказания услуг.
- *
- * Назначение:
- * - сообщить посетителю территорию работы компании;
- * - помочь определить возможность выезда на конкретный участок;
- * - привести посетителя к уточнению возможности выезда.
- *
- * Компонент используется на главной странице сайта.
- *
- * Конкретный список населённых пунктов будет добавлен
- * после определения постоянной зоны обслуживания.
- */
+/** География выезда с декоративной инженерной графикой. */
+const areas = [
+  'Дачные и загородные участки',
+  'Ближние районы — по согласованию',
+  'Дальние выезды — индивидуально',
+] as const;
 ---
 
-<section
-  id="service-area"
-  class="section section--soft service-area"
-  aria-labelledby="service-area-title"
->
-  <div class="container">
-    <div class="service-area__content">
-      <header class="section-heading service-area__heading">
-        <h2
-          id="service-area-title"
-          class="section-heading__title"
-        >
-          Где мы работаем
-        </h2>
-
-        <p class="section-heading__description">
-          Выезжаем на дачные и загородные участки в пределах нашей зоны обслуживания.
-        </p>
-      </header>
-
-      <p class="service-area__text">
-        Уточнить возможность выезда в ваш населённый пункт можно при оформлении заявки.
+<section id="service-area" class="service-area" aria-labelledby="service-area-title">
+  <div class="service-area__inner">
+    <div class="service-area__copy">
+      <span class="section-kicker" aria-hidden="true"></span>
+      <h2 id="service-area-title">Где мы работаем</h2>
+      <p>
+        Выезжаем на участки в пределах согласованной зоны обслуживания.
+        Сообщите адрес — подтвердим возможность и сроки выезда.
       </p>
-
-      <a
-        class="button button--primary"
-        href="#contacts"
-      >
-        Уточнить возможность выезда
-      </a>
+      <a href="#contacts">Уточнить зону выезда →</a>
     </div>
+
+    <ul class="service-area__list" role="list">
+      {areas.map((area) => (
+        <li><span aria-hidden="true">⌖</span>{area}</li>
+      ))}
+    </ul>
   </div>
 </section>
 
 <style>
-  .service-area {
-    overflow: hidden;
+.service-area {
+    background: var(--color-background);
   }
 
-  .service-area::after {
-    position: absolute;
-    top: 50%;
-    right: -8rem;
-
-    width: 24rem;
-    height: 24rem;
-
-    border: 4rem solid
-      color-mix(
-        in srgb,
-        var(--color-primary) 9%,
-        transparent
-      );
-
-    border-radius: var(--radius-pill);
-
-    content: '';
-
-    pointer-events: none;
-
-    transform: translateY(-50%);
+  .service-area__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.95fr);
+    gap: clamp(1.75rem, 3vw, 3rem);
+    align-items: start;
+    min-height: 0;
+    padding: clamp(2rem, 3vw, 3rem);
   }
 
-  .service-area__content {
-    position: relative;
-
-    z-index: var(--z-base);
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-6);
-
-    max-width: 720px;
+  .service-area__copy {
+    max-width: 390px;
   }
 
-  .service-area__heading {
-    margin-bottom: 0;
+  .service-area__copy .section-kicker {
+    width: fit-content;
+    margin-bottom: 0.8rem;
+    font-size: 0;
   }
 
-  .service-area__text {
+  .service-area__copy p {
+    max-width: 360px;
+    margin-top: 0.9rem;
     color: var(--color-text-muted);
+    font-size: 0.82rem;
   }
 
-  @media (max-width: 479px) {
-    .service-area__content .button {
-      width: 100%;
+  .service-area__copy a {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .service-area__list {
+    display: grid;
+    gap: 1rem;
+    align-self: center;
+    margin: 0;
+    padding-top: 1.2rem;
+  }
+
+  .service-area__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    color: var(--color-heading);
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  .service-area__list span {
+    flex: 0 0 auto;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 1050px) {
+    .service-area__inner {
+      grid-template-columns: 1fr;
+      gap: 1.7rem;
+    }
+
+    .service-area__list {
+      max-width: 420px;
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .service-area__inner {
+      padding: 2rem 1.35rem;
     }
   }
 </style>

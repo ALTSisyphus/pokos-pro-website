@@ -1,94 +1,179 @@
 ---
-/**
- * Раздел преимуществ компании.
- *
- * Назначение:
- * - объяснить преимущества обращения в компанию;
- * - повысить доверие посетителя;
- * - показать основные принципы выполнения работ.
- *
- * Компонент используется на главной странице сайта.
- *
- * Идентификатор секции "advantages" используется
- * основной навигацией сайта.
- */
+/** Асимметричный блок преимуществ: текст + цветовой модуль + две строки. */
 ---
 
-<section
-  id="advantages"
-  class="section section--soft benefits"
-  aria-labelledby="advantages-title"
->
-  <div class="container">
-    <header class="section-heading">
-      <h2
-        id="advantages-title"
-        class="section-heading__title"
-      >
-        Почему выбирают нас
-      </h2>
-
-      <p class="section-heading__description">
-        Работаем аккуратно, ответственно и с понятными условиями.
+<section id="advantages" class="benefits" aria-labelledby="advantages-title">
+  <div class="container benefits__grid">
+    <header class="benefits__intro">
+      <span class="section-kicker" aria-hidden="true"></span>
+      <h2 id="advantages-title">Почему выбирают нас</h2>
+      <p>
+        Профессиональный подход и внимание к деталям — основа аккуратной работы
+        на участках разной сложности.
       </p>
     </header>
 
-    <div class="grid grid--3">
-      <article class="card benefits__card">
-        <h3>
-          Профессиональный подход
-        </h3>
+    <article class="benefits__feature">
+      <span class="benefits__feature-icon" aria-hidden="true">▤</span>
+      <h3>Комплексный подход</h3>
+      <p>
+        Оцениваем участок, подбираем технику и способ работы под фактическое
+        состояние территории.
+      </p>
+    </article>
 
-        <p>
-          Подбираем способ выполнения работ с учётом состояния и особенностей участка.
-        </p>
+    <div class="benefits__stack">
+      <article class="benefits__row">
+        <span class="benefits__icon" aria-hidden="true">✓</span>
+        <div>
+          <h3>Сроки и без задержек</h3>
+          <p>Согласовываем выезд заранее и придерживаемся договорённостей.</p>
+        </div>
       </article>
 
-      <article class="card benefits__card">
-        <h3>
-          Аккуратная работа
-        </h3>
-
-        <p>
-          Бережно относимся к территории, постройкам и другим объектам на участке.
-        </p>
-      </article>
-
-      <article class="card benefits__card">
-        <h3>
-          Понятная стоимость
-        </h3>
-
-        <p>
-          Стоимость работ зависит от площади, состояния участка и сложности задачи.
-        </p>
+      <article class="benefits__row">
+        <span class="benefits__icon" aria-hidden="true">◇</span>
+        <div>
+          <h3>Честные условия</h3>
+          <p>Стоимость зависит от объёма работ и состояния конкретного участка.</p>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
 <style>
-  .benefits__card {
+  .benefits {
+    background: var(--color-background-soft);
+  }
+
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.55fr;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .benefits__intro,
+  .benefits__feature,
+  .benefits__row {
+    padding: clamp(1.7rem, 3vw, 2.8rem);
+  }
+
+  .benefits__intro {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: 1rem;
   }
 
-  .benefits__card::before {
-    width: 12px;
-    height: 12px;
+  .benefits__intro .section-kicker {
+    width: fit-content;
+    font-size: 0;
+  }
 
-    border-radius: var(--radius-pill);
+  .benefits__intro p {
+    max-width: 32ch;
+    margin-top: 0.4rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
 
+  .benefits__feature {
+    display: flex;
+    min-height: 300px;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-left: 1px solid var(--color-border);
     background: var(--color-primary);
-
-    box-shadow:
-      0 0 0 7px var(--color-primary-soft);
-
-    content: '';
+    color: var(--color-white);
   }
 
-  .benefits__card h3 {
-    margin-top: var(--space-3);
+  .benefits__feature h3,
+  .benefits__feature p {
+    color: var(--color-white);
+  }
+
+  .benefits__feature-icon {
+    margin-bottom: auto;
+    font-family: var(--font-heading);
+    font-size: 2.7rem;
+    line-height: 1;
+  }
+
+  .benefits__feature p {
+    max-width: 28ch;
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
+    opacity: 0.88;
+  }
+
+  .benefits__stack {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .benefits__row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1.4rem;
+    background: var(--color-white);
+  }
+
+  .benefits__row + .benefits__row {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .benefits__row p {
+    margin-top: 0.45rem;
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+  }
+
+  .benefits__icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: 960px) {
+    .benefits__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .benefits__stack {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--color-border);
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .benefits__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits__intro,
+    .benefits__feature,
+    .benefits__row {
+      padding: 1.5rem 1.35rem;
+    }
+
+    .benefits__feature {
+      min-height: 260px;
+      border-top: 1px solid var(--color-border);
+      border-left: 0;
+    }
+
+    .benefits__stack {
+      grid-column: auto;
+    }
   }
 </style>

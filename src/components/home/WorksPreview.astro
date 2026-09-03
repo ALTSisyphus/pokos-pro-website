@@ -1,94 +1,113 @@
 ---
-/**
- * Предварительный просмотр выполненных работ.
- *
- * Назначение:
- * - показать примеры выполненных заказов;
- * - продемонстрировать результат работы компании;
- * - повысить доверие потенциальных клиентов.
- *
- * Компонент используется на главной странице сайта.
- */
+/** Табличный список работ для левой половины парного блока. */
+const works = [
+  ['01', 'Покос дачного участка', 'Участок любой площади'],
+  ['02', 'Расчистка запущенного участка', 'Высокая трава и сорняк'],
+  ['03', 'Покос и сбор травы', 'Комплексное обслуживание'],
+] as const;
 ---
 
-<section
-  id="works"
-  class="section works"
-  aria-labelledby="works-title"
->
-  <div class="container">
-    <header class="section-heading">
-      <h2
-        id="works-title"
-        class="section-heading__title"
-      >
-        Наши работы
-      </h2>
-
-      <p class="section-heading__description">
-        Примеры участков до и после выполнения работ.
-      </p>
+<section id="works" class="works" aria-labelledby="works-title">
+  <div class="works__inner">
+    <header class="works__header">
+      <span class="section-kicker" aria-hidden="true"></span>
+      <h2 id="works-title">Наши работы</h2>
     </header>
 
-    <div class="grid grid--3">
-      <article class="card works__card">
-        <h3>
-          Покос дачного участка
-        </h3>
-
-        <p>
-          Покос травы и приведение территории в аккуратный вид.
-        </p>
-      </article>
-
-      <article class="card works__card">
-        <h3>
-          Расчистка запущенного участка
-        </h3>
-
-        <p>
-          Удаление высокой травы и густой растительности.
-        </p>
-      </article>
-
-      <article class="card works__card">
-        <h3>
-          Уход за территорией
-        </h3>
-
-        <p>
-          Поддерживающий покос для сохранения участка в ухоженном состоянии.
-        </p>
-      </article>
+    <div class="works__list">
+      {works.map(([number, title, meta]) => (
+        <a class="works__row" href="#contacts">
+          <span class="works__number">{number}</span>
+          <strong>{title}</strong>
+          <span class="works__meta">{meta}</span>
+          <span class="works__link">Смотреть →</span>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .works__card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-
-    min-height: 220px;
+  .works {
+    background: var(--color-background);
   }
 
-  .works__card h3 {
-    margin-top: auto;
+  .works__inner {
+    padding: clamp(1.8rem, 3.5vw, 3rem);
   }
 
-  .works__card::before {
-    width: 100%;
-    height: 6px;
+  .works__header {
+    display: grid;
+    gap: 0.8rem;
+    margin-bottom: 1.3rem;
+  }
 
-    border-radius: var(--radius-pill);
+  .works__header .section-kicker {
+    width: fit-content;
+    font-size: 0;
+  }
 
-    background: linear-gradient(
-      90deg,
-      var(--color-primary),
-      var(--color-primary-soft)
-    );
+  .works__list {
+    border-top: 1px solid var(--color-border);
+  }
 
-    content: '';
+  .works__row {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1.2fr) minmax(120px, 0.8fr) auto;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 68px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.78rem;
+  }
+
+  .works__number,
+  .works__link {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  .works__number {
+    font-size: 1.05rem;
+  }
+
+  .works__row strong {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+  }
+
+  .works__meta {
+    color: var(--color-text-muted);
+  }
+
+  .works__link {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 580px) {
+    .works__inner {
+      padding: 1.5rem 1.35rem;
+    }
+
+    .works__row {
+      grid-template-columns: 36px 1fr auto;
+      gap: 0.65rem;
+      padding-block: 0.8rem;
+    }
+
+    .works__meta {
+      display: none;
+    }
+
+    .works__link {
+      font-size: 0;
+    }
+
+    .works__link::after {
+      font-size: 1rem;
+      content: '→';
+    }
   }
 </style>

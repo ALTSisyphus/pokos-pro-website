@@ -1,91 +1,108 @@
 ---
-/**
- * Предварительный просмотр материалов блога.
- *
- * Назначение:
- * - познакомить посетителя с полезными материалами;
- * - показать экспертность компании;
- * - обеспечить переход к разделу блога.
- *
- * Компонент используется на главной странице сайта.
- *
- * Реальные статьи и ссылки будут подключены
- * после создания структуры блога.
- */
+/** Превью статей в трёх компактных модулях. */
+const articles = [
+  {
+    icon: '///',
+    title: 'Как часто нужно косить траву на участке',
+    text: 'Разбираемся, от чего зависит периодичность покоса.',
+  },
+  {
+    icon: '✣',
+    title: 'Что делать с высокой травой',
+    text: 'Подход к заросшим и давно не обслуживаемым участкам.',
+  },
+  {
+    icon: '⌁',
+    title: 'Как подготовить участок к покосу',
+    text: 'Короткий чек-лист перед приездом бригады.',
+  },
+] as const;
 ---
 
-<section
-  id="blog"
-  class="section section--soft blog-preview"
-  aria-labelledby="blog-title"
->
-  <div class="container">
-    <header class="section-heading">
-      <h2
-        id="blog-title"
-        class="section-heading__title"
-      >
-        Полезные статьи
-      </h2>
+<section id="articles" class="blog" aria-labelledby="articles-title">
+  <div class="blog__inner">
+    <h2 id="articles-title">Полезные статьи</h2>
 
-      <p class="section-heading__description">
-        Материалы об уходе за участком, покосе травы и подготовке территории.
-      </p>
-    </header>
-
-    <div class="grid grid--3">
-      <article class="card blog-preview__card">
-        <h3>
-          Как часто нужно косить траву на участке
-        </h3>
-
-        <p>
-          Разберём, от чего зависит периодичность покоса и как поддерживать участок в порядке.
-        </p>
-      </article>
-
-      <article class="card blog-preview__card">
-        <h3>
-          Что делать с высокой травой
-        </h3>
-
-        <p>
-          Основные особенности работы с высокой и густой растительностью.
-        </p>
-      </article>
-
-      <article class="card blog-preview__card">
-        <h3>
-          Как подготовить участок к покосу
-        </h3>
-
-        <p>
-          Что стоит проверить на территории перед началом работ.
-        </p>
-      </article>
+    <div class="blog__grid">
+      {articles.map((article) => (
+        <article class="blog__card">
+          <span class="blog__icon" aria-hidden="true">{article.icon}</span>
+          <h3>{article.title}</h3>
+          <p>{article.text}</p>
+          <a href="/blog">Читать статью →</a>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .blog-preview__card {
+  .blog {
+    background: var(--color-background);
+  }
+
+  .blog__inner {
+    padding: clamp(1.8rem, 3.5vw, 3rem);
+  }
+
+  .blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.3rem;
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .blog__card {
     display: flex;
+    min-height: 230px;
     flex-direction: column;
-    gap: var(--space-4);
-
-    min-height: 240px;
+    padding: 1.25rem;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-white);
   }
 
-  .blog-preview__card::before {
-    width: 100%;
-    height: 1px;
-
-    background: var(--color-border);
-
-    content: '';
+  .blog__icon {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
   }
 
-  .blog-preview__card h3 {
+  .blog__card h3 {
+    margin-top: 1rem;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+  }
+
+  .blog__card p {
+    margin-top: 0.6rem;
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+  }
+
+  .blog__card a {
     margin-top: auto;
+    padding-top: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 620px) {
+    .blog__inner {
+      padding: 1.5rem 1.35rem;
+    }
+
+    .blog__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .blog__card {
+      min-height: 190px;
+    }
   }
 </style>

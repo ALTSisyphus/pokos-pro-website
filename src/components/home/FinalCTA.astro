@@ -1,234 +1,136 @@
 ---
-/**
- * Финальный призыв к действию.
- *
- * Назначение:
- * - повторно сформулировать предложение компании;
- * - привести посетителя к отправке заявки;
- * - предоставить базовую форму для обращения;
- * - завершить основное содержимое главной страницы.
- *
- * Компонент используется на главной странице сайта.
- *
- * Временно:
- * - форма не отправляет данные на сервер;
- * - отправка будет подключена после реализации
- *   серверного обработчика заявок.
- */
+/** Большая зелёная CTA-плоскость с формой, как в нижнем правом блоке референса. */
 ---
 
-<section
-  id="contacts"
-  class="section section--soft final-cta"
-  aria-labelledby="contacts-title"
->
-  <div class="container">
-    <div class="final-cta__layout">
-      <header class="section-heading final-cta__heading">
-        <h2
-          id="contacts-title"
-          class="section-heading__title"
-        >
-          Заказать покос травы
-        </h2>
+<section id="contacts" class="final-cta" aria-labelledby="contacts-title">
+  <div class="final-cta__inner">
+    <div class="final-cta__copy">
+      <h2 id="contacts-title">Заказать покос травы</h2>
+      <p>
+        Оставьте заявку — свяжемся с вами, уточним задачу и рассчитаем стоимость.
+      </p>
 
-        <p class="section-heading__description">
-          Оставьте информацию об участке, чтобы обсудить объём и стоимость работ.
-        </p>
-      </header>
-
-      <form
-        class="final-cta__form"
-        data-contact-form
-      >
-        <div class="final-cta__field">
-          <label for="name">
-            Имя
-          </label>
-
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            required
-          />
-        </div>
-
-        <div class="final-cta__field">
-          <label for="phone">
-            Телефон
-          </label>
-
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autocomplete="tel"
-            inputmode="tel"
-            required
-          />
-        </div>
-
-        <div class="final-cta__field final-cta__field--full">
-          <label for="message">
-            Информация об участке
-          </label>
-
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-          ></textarea>
-        </div>
-
-        <div class="final-cta__submit">
-          <button
-            class="button button--primary"
-            type="submit"
-          >
-            Отправить заявку
-          </button>
-        </div>
-
-        <p
-          class="final-cta__status"
-          data-contact-form-status
-          role="status"
-          aria-live="polite"
-        ></p>
-      </form>
+      <ul class="final-cta__facts" role="list">
+        <li><span aria-hidden="true">↗</span> Уточним параметры участка</li>
+        <li><span aria-hidden="true">✓</span> Согласуем дату и время выезда</li>
+      </ul>
     </div>
+
+    <form class="final-cta__form">
+      <div class="final-cta__fields">
+        <label>
+          <span class="visually-hidden">Имя</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Имя" />
+        </label>
+        <label>
+          <span class="visually-hidden">Телефон</span>
+          <input type="tel" name="phone" autocomplete="tel" placeholder="Телефон" required />
+        </label>
+      </div>
+
+      <label>
+        <span class="visually-hidden">Описание участка и задачи</span>
+        <textarea name="message" placeholder="Опишите участок и задачу"></textarea>
+      </label>
+
+      <button class="button button--light" type="submit">Отправить заявку</button>
+    </form>
   </div>
 </section>
 
-<script>
-  const form =
-    document.querySelector<HTMLFormElement>('[data-contact-form]');
-
-  const status =
-    document.querySelector<HTMLElement>('[data-contact-form-status]');
-
-  if (form && status) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      status.textContent =
-        'Отправка формы пока не подключена. Введённые данные не были отправлены.';
-    });
-  }
-</script>
-
 <style>
   .final-cta {
-    overflow: hidden;
+    height: 100%;
+    background: var(--color-primary);
+    color: var(--color-white);
   }
 
-  .final-cta__layout {
-    position: relative;
-
-    z-index: var(--z-base);
-
+  .final-cta__inner {
     display: grid;
-    grid-template-columns:
-      minmax(0, 0.85fr)
-      minmax(0, 1.15fr);
-
-    gap: clamp(
-      var(--space-10),
-      7vw,
-      var(--space-24)
-    );
-
-    align-items: start;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    height: 100%;
+    min-height: 360px;
+    padding: clamp(1.8rem, 3.5vw, 3rem);
   }
 
-  .final-cta__heading {
-    position: sticky;
+  .final-cta h2 {
+    color: var(--color-white);
+  }
 
-    top: calc(
-      var(--header-height) +
-      var(--space-8)
-    );
+  .final-cta__copy p {
+    max-width: 33ch;
+    margin-top: 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.8rem;
+  }
 
-    margin-bottom: 0;
+  .final-cta__facts {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.7rem;
+  }
+
+  .final-cta__facts li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .final-cta__facts span {
+    display: grid;
+    width: 24px;
+    height: 24px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    font-family: var(--font-heading);
   }
 
   .final-cta__form {
     display: grid;
+    align-content: start;
+    gap: 0.8rem;
+  }
 
-    grid-template-columns: repeat(
-      2,
-      minmax(0, 1fr)
-    );
+  .final-cta__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
 
-    gap: var(--space-5);
-
-    padding: clamp(
-      var(--space-6),
-      4vw,
-      var(--space-10)
-    );
-
-    border-radius: var(--radius-lg);
-
+  .final-cta input,
+  .final-cta textarea {
+    border-color: rgba(255, 255, 255, 0.48);
     background: var(--color-white);
-
-    box-shadow: var(--shadow-lg);
+    color: var(--color-heading);
   }
 
-  .final-cta__field {
-    display: flex;
-    flex-direction: column;
-
-    gap: var(--space-2);
+  .final-cta textarea {
+    min-height: 132px;
   }
 
-  .final-cta__field--full {
-    grid-column: 1 / -1;
+  .final-cta .button {
+    justify-self: start;
+    min-width: 190px;
   }
 
-  .final-cta__submit {
-    grid-column: 1 / -1;
-
-    margin-top: var(--space-2);
+  @media (max-width: 1180px) {
+    .final-cta__inner {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .final-cta__status {
-    grid-column: 1 / -1;
+  @media (max-width: 580px) {
+    .final-cta__inner {
+      padding: 1.5rem 1.35rem;
+    }
 
-    min-height: 1.5em;
-
-    color: var(--color-text);
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-base);
-  }
-
-  @media (max-width: 900px) {
-    .final-cta__layout {
+    .final-cta__fields {
       grid-template-columns: 1fr;
     }
 
-    .final-cta__heading {
-      position: static;
-
-      max-width: 720px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .final-cta__form {
-      grid-template-columns: 1fr;
-    }
-
-    .final-cta__field,
-    .final-cta__field--full,
-    .final-cta__submit,
-    .final-cta__status {
-      grid-column: 1;
-    }
-
-    .final-cta__submit .button {
+    .final-cta .button {
       width: 100%;
     }
   }

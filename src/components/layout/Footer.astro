@@ -1,89 +1,65 @@
 ---
-/**
- * Подвал сайта.
- *
- * Назначение:
- * - отображать название компании;
- * - завершать структуру страницы;
- * - предоставлять место для контактной,
- *   юридической и дополнительной информации.
- *
- * Компонент предназначен для повторного использования
- * на страницах сайта.
- */
-
+/** Компактный подвал, продолжающий модульную сетку страницы. */
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <!-- Основная информация о компании -->
-    <a
-      class="site-footer__brand"
-      href="/"
-      aria-label="Покос ПРО — главная страница"
-    >
-      <span>Покос</span>
-      <strong>ПРО</strong>
-    </a>
-
-    <!-- Информация об авторских правах -->
-    <p class="site-footer__copyright">
-      © {currentYear} Покос ПРО
-    </p>
+    <p class="site-footer__brand">Покос <strong>ПРО</strong></p>
+    <p>© {currentYear} Все права защищены</p>
+    <div class="site-footer__legal" aria-label="Юридическая информация">
+      <span>Политика конфиденциальности</span>
+      <span>Согласие на обработку данных</span>
+    </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    padding-block: var(--space-10);
-
-    border-top: 1px solid
-      color-mix(
-        in srgb,
-        var(--color-white) 12%,
-        transparent
-      );
-
-    background: var(--color-background-soft);
-    color: var(--color-text-muted);
+    background: var(--color-background);
   }
 
   .site-footer__inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-6);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    min-height: 76px;
+    border-right: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
   }
 
   .site-footer__brand {
-    display: inline-flex;
-    align-items: baseline;
-    gap: var(--space-2);
-
     color: var(--color-heading);
-
     font-family: var(--font-heading);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-
-    letter-spacing: var(--letter-spacing-tight);
+    font-size: 0.85rem;
+    font-weight: 700;
   }
 
   .site-footer__brand strong {
     color: var(--color-primary);
   }
 
-  .site-footer__copyright {
-    max-width: none;
-
-    font-size: var(--font-size-sm);
+  .site-footer__legal {
+    display: flex;
+    justify-content: flex-end;
+    gap: clamp(1rem, 3vw, 3rem);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 760px) {
     .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding-block: 1.4rem;
+    }
+
+    .site-footer__legal {
       flex-direction: column;
-      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0.35rem;
     }
   }
 </style>

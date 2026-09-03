@@ -1,164 +1,74 @@
 ---
 /**
- * Первый экран главной страницы.
- *
- * Назначение:
- * - кратко сообщить посетителю основную услугу компании;
- * - сформулировать главное ценностное предложение;
- * - привести посетителя к отправке заявки;
- * - обеспечить быстрый переход к разделу с услугами.
- *
- * Компонент используется на главной странице сайта.
+ * Первый экран. Двухколоночная композиция максимально приближена к референсу:
+ * крупная типографика слева, фирменная модульная геометрия справа.
  */
 ---
 
-<section
-  id="hero"
-  class="hero"
-  aria-labelledby="hero-title"
->
-  <div class="container hero__inner">
+<section id="hero" class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
     <div class="hero__content">
-      <p class="hero__eyebrow">
-        Покос ПРО · уход за участками
-      </p>
-
       <h1 id="hero-title">
-        Покос травы и расчистка{' '}<span>участков</span>
+        Покос травы<br />и расчистка<br /><span>участков</span>
       </h1>
 
       <p class="hero__description">
-        Помогаем привести в порядок дачные и загородные территории:
-        работаем с обычной, высокой и густой травой, убираем лишнюю
-        растительность.
+        Приводим участки в порядок: убираем высокую траву, сорняки и заросли.
+        Работаем быстро, аккуратно и с учётом состояния территории.
       </p>
 
       <div class="hero__actions">
-        <a
-          class="button button--primary"
-          href="#contacts"
-        >
-          Рассчитать стоимость
-        </a>
-
-        <a
-          class="hero__secondary-link"
-          href="#services"
-        >
-          Посмотреть услуги
-
-          <span aria-hidden="true">→</span>
+        <a class="button button--primary" href="#contacts">Рассчитать стоимость</a>
+        <a class="hero__secondary" href="#works">
+          Посмотреть работы <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      <ul
-        class="hero__proof"
-        role="list"
-        aria-label="Принципы работы"
-      >
-        <li>Аккуратно к территории</li>
-        <li>Понятные условия</li>
-        <li>Подход под состояние участка</li>
+      <ul class="hero__proof" role="list" aria-label="Преимущества">
+        <li>
+          <span class="hero__proof-icon" aria-hidden="true">✓</span>
+          <span>Современное<br />оборудование</span>
+        </li>
+        <li>
+          <span class="hero__proof-icon" aria-hidden="true">✓</span>
+          <span>Аккуратная<br />работа</span>
+        </li>
+        <li>
+          <span class="hero__clock" aria-hidden="true"></span>
+          <span>Оперативный<br />выезд</span>
+        </li>
       </ul>
     </div>
   </div>
 </section>
 
 <style>
-  .hero {
-    position: relative;
+.hero {
+    background: var(--color-background);
+  }
 
-    overflow: hidden;
-
+  .hero__grid {
+    display: block;
+    min-height: 0;
+    border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    background: var(--color-background-soft);
-  }
-
-  .hero::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-
-    width: max(24vw, 320px);
-
     border-left: 1px solid var(--color-border);
-    background: var(--color-background-muted);
-
-    content: '';
-
-    pointer-events: none;
-  }
-
-  .hero::after {
-    position: absolute;
-    top: 50%;
-    right: clamp(2rem, 7vw, 7rem);
-
-    width: clamp(140px, 15vw, 220px);
-    height: clamp(140px, 15vw, 220px);
-
-    border-top: 1px solid var(--color-border-strong);
-    border-right: 1px solid var(--color-border-strong);
-
-    content: '';
-
-    opacity: 0.55;
-    pointer-events: none;
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  .hero__inner {
-    position: relative;
-
-    z-index: var(--z-base);
-
-    display: flex;
-    align-items: center;
-
-    min-height: clamp(610px, calc(100svh - var(--header-height)), 760px);
-
-    padding-block: clamp(var(--space-16), 7vw, var(--space-24));
   }
 
   .hero__content {
-    display: grid;
-    justify-items: start;
-
-    width: min(100%, 860px);
-  }
-
-  .hero__eyebrow {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
-
-    margin-bottom: var(--space-5);
-
-    color: var(--color-primary);
-
-    font-family: var(--font-heading);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    line-height: 1.2;
-
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-  }
-
-  .hero__eyebrow::before {
-    width: 34px;
-    height: 3px;
-
-    background: var(--color-primary);
-
-    content: '';
+    min-height: clamp(400px, 42vw, 465px);
+    width: 100%;
+    max-width: 980px;
+    flex-direction: column;
+    justify-content: center;
+    padding:
+      clamp(2.5rem, 3.8vw, 3.75rem)
+      clamp(2.5rem, 5vw, 5rem);
   }
 
   .hero h1 {
-    max-width: 15ch;
-
-    text-wrap: balance;
+    max-width: 9ch;
   }
 
   .hero h1 span {
@@ -166,148 +76,155 @@
   }
 
   .hero__description {
-    max-width: 620px;
-
-    margin-top: var(--space-6);
-
-    color: var(--color-text);
-    font-size: clamp(
-      1.0625rem,
-      0.95rem + 0.45vw,
-      1.25rem
-    );
+    max-width: 680px;
+    margin-top: 1.25rem;
+    color: var(--color-heading);
+    font-size: clamp(0.95rem, 1.05vw, 1.08rem);
   }
 
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-5);
-
-    margin-top: var(--space-8);
+    gap: 1.5rem;
+    margin-top: 1.55rem;
   }
 
-  .hero__secondary-link {
+  .hero__secondary {
     display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
-
     min-height: 48px;
-
-    padding-inline: var(--space-2);
-
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid var(--color-border-strong);
     color: var(--color-heading);
-
     font-family: var(--font-heading);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    text-decoration: underline;
-    text-decoration-color: var(--color-border-strong);
+    font-size: 0.82rem;
+    font-weight: 700;
   }
 
-  .hero__secondary-link span {
+  .hero__secondary span {
     color: var(--color-primary);
-    font-size: var(--font-size-lg);
-
+    font-size: 1.15rem;
     transition: transform var(--transition-base);
   }
 
-  .hero__secondary-link:hover {
-    color: var(--color-primary);
-  }
-
-  .hero__secondary-link:hover span {
+  .hero__secondary:hover span {
     transform: translateX(4px);
   }
 
   .hero__proof {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3) var(--space-6);
-
-    margin-top: var(--space-10);
-    padding-top: var(--space-5);
-
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.35rem;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 1.8rem;
+    padding-top: 1.1rem;
     border-top: 1px solid var(--color-border);
   }
 
   .hero__proof li {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-
-    color: var(--color-text-muted);
-
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    color: var(--color-heading);
+    font-size: 0.76rem;
+    line-height: 1.45;
   }
 
-  .hero__proof li::before {
-    width: 7px;
-    height: 7px;
+  .hero__proof-icon,
+  .hero__clock {
+    display: inline-grid;
+    position: relative;
+    width: 25px;
+    height: 27px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
 
+  .hero__proof-icon {
+    clip-path: polygon(
+      50% 0,
+      92% 15%,
+      92% 60%,
+      50% 100%,
+      8% 60%,
+      8% 15%
+    );
+  }
+
+  .hero__clock {
+    border-radius: 50%;
+  }
+
+  .hero__clock::before,
+  .hero__clock::after {
+    position: absolute;
+    width: 1.5px;
     background: var(--color-primary);
-
-    content: '';
+    content: "";
+    transform-origin: bottom center;
   }
 
-  @media (max-width: 1100px) {
-    .hero::before,
-    .hero::after {
-      display: none;
-    }
+  .hero__clock::before {
+    top: 6px;
+    left: 11px;
+    height: 7px;
+  }
 
-    .hero__inner {
-      min-height: auto;
+  .hero__clock::after {
+    top: 10px;
+    left: 11px;
+    height: 6px;
+    transform: rotate(125deg);
+  }
 
-      padding-block: var(--space-16);
-    }
-
+  @media (max-width: 900px) {
     .hero__content {
-      max-width: 760px;
+      min-height: 500px;
+      max-width: none;
+      padding:
+        3.4rem
+        clamp(1.5rem, 6vw, 3rem);
     }
   }
 
-  @media (max-width: 680px) {
-    .hero__inner {
-      padding-block: var(--space-12) var(--space-14);
-    }
-
-    .hero__eyebrow {
-      margin-bottom: var(--space-4);
-
-      font-size: var(--font-size-xs);
-      letter-spacing: 0.06em;
-    }
-
-    .hero h1 {
-      max-width: 13ch;
+  @media (max-width: 620px) {
+    .hero__content {
+      min-height: 0;
+      padding: 3rem 1.35rem 2.5rem;
     }
 
     .hero__description {
-      margin-top: var(--space-5);
+      margin-top: 1.3rem;
     }
 
     .hero__actions {
-      width: 100%;
-
-      margin-top: var(--space-6);
+      align-items: stretch;
+      margin-top: 1.6rem;
     }
 
-    .hero__actions .button,
-    .hero__secondary-link {
+    .hero__actions .button {
       width: 100%;
     }
 
-    .hero__secondary-link {
-      justify-content: center;
+    .hero__secondary {
+      width: fit-content;
     }
 
     .hero__proof {
-      gap: var(--space-2) var(--space-4);
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
 
-      margin-top: var(--space-6);
-      padding-top: var(--space-4);
+    .hero__proof li br {
+      display: none;
     }
   }
 </style>
