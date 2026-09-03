@@ -38,25 +38,26 @@
      Colors
      ------------------------------------------------------------------------ */
 
-  --color-primary: #2ecc40;
-  --color-primary-hover: #27b638;
-  --color-primary-active: #219c31;
-  --color-primary-soft: #eaf9ec;
+  --color-primary: #27663c;
+  --color-primary-hover: #1f5431;
+  --color-primary-active: #194529;
+  --color-primary-soft: #e7f0e7;
+  --color-focus: #9a4f16;
 
-  --color-heading: #222222;
-  --color-text: #666666;
-  --color-text-muted: #777777;
+  --color-heading: #19231b;
+  --color-text: #445047;
+  --color-text-muted: #5c685f;
 
   --color-white: #ffffff;
   --color-black: #000000;
 
   --color-background: #ffffff;
-  --color-background-soft: #f7f8f7;
-  --color-background-muted: #f0f3f0;
-  --color-background-dark: #161e39;
+  --color-background-soft: #f5f7f3;
+  --color-background-muted: #e9eee8;
+  --color-background-dark: #17271c;
 
-  --color-border: #e2e7e2;
-  --color-border-strong: #ccd3cc;
+  --color-border: #d9e0d8;
+  --color-border-strong: #78877b;
 
   --color-overlay: rgba(14, 22, 16, 0.62);
 
@@ -82,8 +83,8 @@
   --font-size-h5: 1.25rem;
   --font-size-h4: clamp(1.375rem, 1.25rem + 0.4vw, 1.5rem);
   --font-size-h3: clamp(1.5rem, 1.3rem + 0.65vw, 1.75rem);
-  --font-size-h2: clamp(2rem, 1.65rem + 1.15vw, 2.5rem);
-  --font-size-h1: clamp(2.75rem, 1.75rem + 3.25vw, 4.5rem);
+  --font-size-h2: clamp(2rem, 1.65rem + 1.15vw, 2.625rem);
+  --font-size-h1: clamp(2.5rem, 1.8rem + 2.8vw, 4.75rem);
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -92,8 +93,8 @@
 
   --line-height-tight: 1.1;
   --line-height-heading: 1.3;
-  --line-height-base: 1.7;
-  --line-height-relaxed: 1.8;
+  --line-height-base: 1.65;
+  --line-height-relaxed: 1.72;
 
   --letter-spacing-tight: -0.025em;
   --letter-spacing-normal: 0;
@@ -104,11 +105,11 @@
      Layout
      ------------------------------------------------------------------------ */
 
-  --container-width: 1200px;
+  --container-width: 1240px;
   --container-narrow-width: 850px;
-  --container-padding: 20px;
+  --container-padding: clamp(1rem, 0.5rem + 2vw, 2rem);
 
-  --header-height: 88px;
+  --header-height: 76px;
 
 
   /* ------------------------------------------------------------------------
@@ -131,8 +132,8 @@
   --space-28: 7rem;
   --space-32: 8rem;
 
-  --section-space: clamp(4.5rem, 8vw, 7.5rem);
-  --section-space-small: clamp(3rem, 6vw, 5rem);
+  --section-space: clamp(4rem, 7vw, 7rem);
+  --section-space-small: clamp(3rem, 5vw, 4.5rem);
 
   --content-gap: clamp(1.5rem, 3vw, 2.5rem);
   --grid-gap: clamp(1.25rem, 2.5vw, 2rem);
@@ -284,8 +285,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  overflow-x: hidden;
-
   background: var(--color-background);
   color: var(--color-text);
 
@@ -309,12 +308,12 @@ section {
 }
 
 ::selection {
-  background: var(--color-primary);
+  background: var(--color-primary-active);
   color: var(--color-white);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-primary);
+  outline: 3px solid var(--color-focus);
   outline-offset: 3px;
 }
 
@@ -364,7 +363,6 @@ h6 {
 }
 
 p {
-  max-width: 70ch;
   line-height: var(--line-height-relaxed);
 }
 
@@ -379,14 +377,20 @@ small {
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 
   transition:
     color var(--transition-base),
-    background-color var(--transition-base),
-    border-color var(--transition-base),
-    opacity var(--transition-base),
-    transform var(--transition-base);
+    text-decoration-color var(--transition-base);
+}
+
+:where(a[class]) {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration-color: var(--color-primary);
 }
 
 hr {
@@ -444,10 +448,11 @@ select:hover {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: var(--color-primary);
-  outline: 0;
+  border-color: var(--color-focus);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 
-  box-shadow: 0 0 0 3px rgba(46, 204, 64, 0.14);
+  box-shadow: none;
 }
 
 label {
@@ -466,8 +471,8 @@ label {
 /**
  * Основной контейнер сайта.
  *
- * Максимальная ширина содержимого соответствует референсу:
- * 1200px + адаптивные боковые поля.
+ * Контент ограничен максимальной шириной и сохраняет
+ * плавные адаптивные поля по краям экрана.
  */
 .container {
   width: min(
@@ -619,7 +624,11 @@ label {
 }
 
 .card:hover {
-  border-color: rgba(46, 204, 64, 0.45);
+  border-color: color-mix(
+    in srgb,
+    var(--color-primary) 45%,
+    var(--color-border)
+  );
 
   box-shadow: var(--shadow-sm);
 
@@ -650,6 +659,7 @@ label {
   line-height: 1;
 
   text-align: center;
+  text-decoration: none;
 
   transition:
     color var(--transition-base),
@@ -693,12 +703,13 @@ label {
 
 .button--outline {
   border-color: var(--color-border-strong);
-  background: transparent;
+  background: var(--color-white);
   color: var(--color-heading);
 }
 
 .button--outline:hover {
   border-color: var(--color-primary);
+  background: var(--color-primary-soft);
   color: var(--color-primary);
 }
 
@@ -706,6 +717,33 @@ label {
 /* ==========================================================================
    Accessibility helpers
    ========================================================================== */
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+
+  z-index: var(--z-modal);
+
+  padding: var(--space-3) var(--space-5);
+
+  border-radius: var(--radius-xs);
+
+  background: var(--color-background-dark);
+  color: var(--color-white);
+
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+
+  transform: translateY(calc(-100% - var(--space-6)));
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
 
 .visually-hidden {
   position: absolute !important;
@@ -756,8 +794,7 @@ label {
 
 @media (max-width: 1024px) {
   :root {
-    --header-height: 80px;
-    --container-padding: 24px;
+    --header-height: 72px;
   }
 
   .grid--3 {
@@ -767,10 +804,9 @@ label {
 
 @media (max-width: 767px) {
   :root {
-    --header-height: 72px;
-    --container-padding: 18px;
+    --header-height: 68px;
 
-    --section-space: 4rem;
+    --section-space: 3.75rem;
     --section-space-small: 3rem;
   }
 
@@ -792,13 +828,6 @@ label {
     padding-inline: var(--space-6);
   }
 }
-
-@media (max-width: 479px) {
-  :root {
-    --container-padding: 16px;
-  }
-}
-
 
 /* ==========================================================================
    Reduced motion
