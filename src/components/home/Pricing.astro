@@ -1,101 +1,116 @@
 ---
-/**
- * Табличный прайс для правой половины парного блока.
- * TODO: перед публикацией заменить демонстрационные цены на утверждённый прайс.
- */
+/** Прайс в формате технической таблицы. Значения можно заменить фактическими тарифами. */
 const prices = [
-  ['Обычный покос', 'Покос травы средней высоты', 'от 700 ₽ / сотка'],
-  ['Высокая трава', 'Покос высокой травы и сорняка', 'от 1 000 ₽ / сотка'],
-  ['Расчистка участка', 'Запущенная растительность и сложные зоны', 'от 1 500 ₽ / сотка'],
+  { title: 'Обычный покос', text: 'Покос травы средней высоты', price: 'от 700 ₽ / сотка' },
+  { title: 'Высокая трава', text: 'Покос высокой травы и сорняка', price: 'от 1 000 ₽ / сотка' },
+  { title: 'Расчистка участка', text: 'Кустарник, поросль, сложные зоны', price: 'от 1 500 ₽ / сотка' },
 ] as const;
 ---
 
 <section id="prices" class="pricing" aria-labelledby="prices-title">
   <div class="pricing__inner">
-    <h2 id="prices-title">Стоимость работ</h2>
+    <header class="pricing__heading">
+      <h2 id="prices-title">Стоимость работ</h2>
+      <span class="section-index">/04</span>
+    </header>
 
-    <div class="pricing__list">
-      {prices.map(([title, description, price]) => (
-        <article class="pricing__row">
+    <div class="pricing__table">
+      {prices.map((item) => (
+        <div class="pricing__row">
           <div>
-            <h3>{title}</h3>
-            <p>{description}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
           </div>
-          <strong>{price}</strong>
-        </article>
+          <strong>{item.price}</strong>
+        </div>
       ))}
     </div>
 
     <div class="pricing__footer">
-      <a class="button button--primary" href="#contacts">Рассчитать стоимость</a>
+      <a class="button button--acid" href="#contacts">Рассчитать стоимость</a>
       <p>Точная стоимость зависит от площади, состояния участка и объёма работ.</p>
     </div>
   </div>
 </section>
 
 <style>
-  .pricing {
-    background: var(--color-background);
-  }
-
   .pricing__inner {
-    padding: clamp(1.8rem, 3.5vw, 3rem);
+    min-height: 390px;
+    padding: clamp(1.4rem, 2vw, 2rem);
   }
 
-  .pricing__list {
-    margin-top: 1.1rem;
-    border-top: 1px solid var(--color-border);
+  .pricing__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .pricing__table {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
   }
 
   .pricing__row {
     display: grid;
     grid-template-columns: 1fr auto;
+    gap: 1rem;
     align-items: center;
-    gap: 1.5rem;
-    min-height: 76px;
-    border-bottom: 1px solid var(--color-border);
+    min-height: 58px;
+    border-bottom: 1px solid var(--color-line);
   }
 
   .pricing__row h3 {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
   }
 
-  .pricing__row p {
+  .pricing__row p,
+  .pricing__footer p {
     margin-top: 0.2rem;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    line-height: 1.4;
+    text-transform: uppercase;
   }
 
-  .pricing__row > strong {
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 0.92rem;
+  .pricing__row strong {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     white-space: nowrap;
   }
 
   .pricing__footer {
     display: grid;
     grid-template-columns: auto 1fr;
+    gap: 1.1rem;
     align-items: center;
-    gap: 1.5rem;
-    margin-top: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  .pricing__footer .button {
+    min-height: 46px;
+    font-size: 0.62rem;
   }
 
   .pricing__footer p {
-    max-width: 26ch;
-    color: var(--color-text-muted);
-    font-size: 0.72rem;
+    max-width: 31ch;
+    margin-top: 0;
   }
 
-  @media (max-width: 580px) {
+  @media (max-width: 620px) {
     .pricing__inner {
-      padding: 1.5rem 1.35rem;
+      min-height: 0;
+      padding: 1.35rem 1rem;
     }
 
     .pricing__row {
-      grid-template-columns: 1fr;
-      gap: 0.45rem;
-      padding-block: 0.85rem;
+      align-items: end;
+    }
+
+    .pricing__row strong {
+      font-size: 0.66rem;
     }
 
     .pricing__footer {

@@ -1,35 +1,36 @@
 ---
-/** Превью статей в трёх компактных модулях. */
+/** Превью полезных материалов в чистой типографической сетке. */
 const articles = [
   {
-    icon: '///',
     title: 'Как часто нужно косить траву на участке',
-    text: 'Разбираемся, от чего зависит периодичность покоса.',
+    text: 'От чего зависит периодичность покоса.',
   },
   {
-    icon: '✣',
     title: 'Что делать с высокой травой',
-    text: 'Подход к заросшим и давно не обслуживаемым участкам.',
+    text: 'Подход к давно не обслуживаемым участкам.',
   },
   {
-    icon: '⌁',
     title: 'Как подготовить участок к покосу',
     text: 'Короткий чек-лист перед приездом бригады.',
   },
 ] as const;
 ---
 
-<section id="articles" class="blog" aria-labelledby="articles-title">
-  <div class="blog__inner">
-    <h2 id="articles-title">Полезные статьи</h2>
+<section id="articles" class="blog-preview" aria-labelledby="articles-title">
+  <div class="blog-preview__inner">
+    <header class="blog-preview__heading">
+      <h2 id="articles-title">Полезные статьи</h2>
+      <span class="section-index">/07</span>
+    </header>
 
-    <div class="blog__grid">
+    <div class="blog-preview__grid">
       {articles.map((article) => (
-        <article class="blog__card">
-          <span class="blog__icon" aria-hidden="true">{article.icon}</span>
-          <h3>{article.title}</h3>
-          <p>{article.text}</p>
-          <a href="/blog">Читать статью →</a>
+        <article class="blog-preview__card">
+          <div class="blog-preview__content">
+            <h3>{article.title}</h3>
+            <p>{article.text}</p>
+            <a href="#">Читать статью →</a>
+          </div>
         </article>
       ))}
     </div>
@@ -37,72 +38,66 @@ const articles = [
 </section>
 
 <style>
-  .blog {
-    background: var(--color-background);
+  .blog-preview__inner {
+    min-height: 280px;
+    padding: clamp(1.4rem, 2vw, 2rem);
   }
 
-  .blog__inner {
-    padding: clamp(1.8rem, 3.5vw, 3rem);
-  }
-
-  .blog__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 1.3rem;
-    border-top: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
-  }
-
-  .blog__card {
+  .blog-preview__heading {
     display: flex;
-    min-height: 230px;
-    flex-direction: column;
-    padding: 1.25rem;
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-white);
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
-  .blog__icon {
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
+  .blog-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+    border-left: 1px solid var(--color-line);
   }
 
-  .blog__card h3 {
-    margin-top: 1rem;
-    font-size: 0.84rem;
-    line-height: 1.35;
-    letter-spacing: -0.025em;
+  .blog-preview__card {
+    min-width: 0;
+    border-right: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
   }
 
-  .blog__card p {
-    margin-top: 0.6rem;
+  .blog-preview__content {
+    padding: 0.8rem;
+  }
+
+  .blog-preview__card h3 {
+    min-height: 3.1em;
+    font-size: 0.82rem;
+    line-height: 1.05;
+  }
+
+  .blog-preview__card p {
+    min-height: 3em;
+    margin-top: 0.55rem;
     color: var(--color-text-muted);
-    font-size: 0.72rem;
+    font-size: 0.64rem;
   }
 
-  .blog__card a {
-    margin-top: auto;
-    padding-top: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
+  .blog-preview__card a {
+    display: inline-flex;
+    margin-top: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
     font-weight: 700;
+    text-transform: uppercase;
   }
 
   @media (max-width: 620px) {
-    .blog__inner {
-      padding: 1.5rem 1.35rem;
+    .blog-preview__inner {
+      min-height: 0;
+      padding: 1.35rem 1rem;
     }
 
-    .blog__grid {
+    .blog-preview__grid {
       grid-template-columns: 1fr;
-    }
-
-    .blog__card {
-      min-height: 190px;
     }
   }
 </style>

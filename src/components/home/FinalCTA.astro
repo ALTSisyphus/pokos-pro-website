@@ -1,137 +1,190 @@
 ---
-/** Большая зелёная CTA-плоскость с формой, как в нижнем правом блоке референса. */
+/** Финальный конверсионный блок в чёрной плоскости. */
 ---
 
 <section id="contacts" class="final-cta" aria-labelledby="contacts-title">
   <div class="final-cta__inner">
     <div class="final-cta__copy">
-      <h2 id="contacts-title">Заказать покос травы</h2>
+      <div class="final-cta__heading">
+        <h2 id="contacts-title">Заказать покос или расчистку</h2>
+        <span class="section-index">/08</span>
+      </div>
+
       <p>
         Оставьте заявку — свяжемся с вами, уточним задачу и рассчитаем стоимость.
       </p>
 
-      <ul class="final-cta__facts" role="list">
-        <li><span aria-hidden="true">↗</span> Уточним параметры участка</li>
-        <li><span aria-hidden="true">✓</span> Согласуем дату и время выезда</li>
-      </ul>
+      <div class="final-cta__contacts">
+        <a href="tel:+79991234567"><span>☎</span><b>+7 (999) 123-45-67</b></a>
+        <a href="mailto:info@pokos-pro.ru"><span>✉</span><b>info@pokos-pro.ru</b></a>
+      </div>
     </div>
 
-    <form class="final-cta__form">
-      <div class="final-cta__fields">
+    <form class="final-cta__form" action="#" method="post">
+      <div class="final-cta__row">
         <label>
-          <span class="visually-hidden">Имя</span>
-          <input type="text" name="name" autocomplete="name" placeholder="Имя" />
+          <span>Имя</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Ваше имя" />
         </label>
         <label>
-          <span class="visually-hidden">Телефон</span>
-          <input type="tel" name="phone" autocomplete="tel" placeholder="Телефон" required />
+          <span>Телефон</span>
+          <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required />
         </label>
       </div>
 
       <label>
-        <span class="visually-hidden">Описание участка и задачи</span>
-        <textarea name="message" placeholder="Опишите участок и задачу"></textarea>
+        <span>Задача</span>
+        <textarea name="message" rows="4" placeholder="Опишите участок и задачу"></textarea>
       </label>
 
-      <button class="button button--light" type="submit">Отправить заявку</button>
+      <label class="final-cta__check">
+        <input type="checkbox" name="consent" required />
+        <span>Согласен(а) на обработку персональных данных</span>
+      </label>
+
+      <button class="button button--acid" type="submit">Отправить заявку</button>
     </form>
   </div>
 </section>
 
 <style>
   .final-cta {
-    height: 100%;
-    background: var(--color-primary);
-    color: var(--color-white);
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
   .final-cta__inner {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    height: 100%;
-    min-height: 360px;
-    padding: clamp(1.8rem, 3.5vw, 3rem);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.2rem, 2vw, 2rem);
+    min-height: 330px;
+    padding: clamp(1.4rem, 2vw, 2rem);
+  }
+
+  .final-cta__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .final-cta h2 {
-    color: var(--color-white);
+    max-width: 9ch;
+    color: var(--color-paper);
   }
 
-  .final-cta__copy p {
-    max-width: 33ch;
-    margin-top: 0.9rem;
-    color: rgba(255, 255, 255, 0.88);
-    font-size: 0.8rem;
+  .final-cta__copy > p {
+    max-width: 34ch;
+    margin-top: 1.1rem;
+    color: var(--color-muted-dark);
+    font-size: 0.72rem;
   }
 
-  .final-cta__facts {
+  .final-cta__contacts {
     display: grid;
-    gap: 0.75rem;
-    margin-top: 1.7rem;
+    gap: 0.65rem;
+    margin-top: 1.35rem;
   }
 
-  .final-cta__facts li {
-    display: flex;
+  .final-cta__contacts a {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0.7rem;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
   }
 
-  .final-cta__facts span {
-    display: grid;
-    width: 24px;
-    height: 24px;
-    place-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    font-family: var(--font-heading);
+  .final-cta__contacts span {
+    color: var(--color-acid);
   }
 
   .final-cta__form {
     display: grid;
     align-content: start;
-    gap: 0.8rem;
+    gap: 0.65rem;
   }
 
-  .final-cta__fields {
+  .final-cta__row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .final-cta__form label {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .final-cta__form label > span {
+    color: var(--color-muted-dark);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    text-transform: uppercase;
   }
 
   .final-cta input,
   .final-cta textarea {
-    border-color: rgba(255, 255, 255, 0.48);
-    background: var(--color-white);
-    color: var(--color-heading);
+    width: 100%;
+    border: 1px solid var(--color-line-dark);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+  }
+
+  .final-cta input {
+    min-height: 44px;
+    padding: 0 0.75rem;
   }
 
   .final-cta textarea {
-    min-height: 132px;
+    min-height: 94px;
+    padding: 0.75rem;
   }
 
-  .final-cta .button {
-    justify-self: start;
-    min-width: 190px;
+  .final-cta input::placeholder,
+  .final-cta textarea::placeholder {
+    color: #73716c;
   }
 
-  @media (max-width: 1180px) {
+  .final-cta input:focus,
+  .final-cta textarea:focus {
+    border-color: var(--color-acid);
+  }
+
+  .final-cta__check {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.55rem !important;
+    margin-top: 0.15rem;
+  }
+
+  .final-cta__check input {
+    width: 15px;
+    min-height: 15px;
+    accent-color: var(--color-acid);
+  }
+
+  .final-cta__form .button {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 700px) {
     .final-cta__inner {
       grid-template-columns: 1fr;
+      min-height: 0;
+      padding: 1.35rem 1rem;
     }
   }
 
-  @media (max-width: 580px) {
-    .final-cta__inner {
-      padding: 1.5rem 1.35rem;
-    }
-
-    .final-cta__fields {
+  @media (max-width: 460px) {
+    .final-cta__row {
       grid-template-columns: 1fr;
-    }
-
-    .final-cta .button {
-      width: 100%;
     }
   }
 </style>

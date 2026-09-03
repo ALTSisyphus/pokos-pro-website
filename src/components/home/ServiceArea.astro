@@ -1,7 +1,7 @@
 ---
-/** География выезда с декоративной инженерной графикой. */
+/** География работ: текст и контрастная utility-панель без декоративной графики. */
 const areas = [
-  'Дачные и загородные участки',
+  'Москва и Московская область',
   'Ближние районы — по согласованию',
   'Дальние выезды — индивидуально',
 ] as const;
@@ -10,102 +10,110 @@ const areas = [
 <section id="service-area" class="service-area" aria-labelledby="service-area-title">
   <div class="service-area__inner">
     <div class="service-area__copy">
-      <span class="section-kicker" aria-hidden="true"></span>
-      <h2 id="service-area-title">Где мы работаем</h2>
+      <header class="service-area__heading">
+        <h2 id="service-area-title">Где мы работаем</h2>
+        <span class="section-index">/05</span>
+      </header>
+
       <p>
-        Выезжаем на участки в пределах согласованной зоны обслуживания.
-        Сообщите адрес — подтвердим возможность и сроки выезда.
+        Выезжаем на дачные и загородные участки. Возможность и срок выезда
+        подтверждаем после уточнения адреса и задачи.
       </p>
-      <a href="#contacts">Уточнить зону выезда →</a>
+
+      <a href="#contacts">Уточнить зону выезда <span aria-hidden="true">→</span></a>
     </div>
 
-    <ul class="service-area__list" role="list">
-      {areas.map((area) => (
-        <li><span aria-hidden="true">⌖</span>{area}</li>
-      ))}
-    </ul>
+    <div class="service-area__panel">
+      <ul role="list">
+        {areas.map((area, index) => (
+          <li><span aria-hidden="true">0{index + 1}</span>{area}</li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>
 
 <style>
-.service-area {
-    background: var(--color-background);
-  }
-
   .service-area__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.95fr);
-    gap: clamp(1.75rem, 3vw, 3rem);
-    align-items: start;
-    min-height: 0;
-    padding: clamp(2rem, 3vw, 3rem);
+    grid-template-columns: 0.95fr 1.15fr;
+    min-height: 300px;
   }
 
   .service-area__copy {
-    max-width: 390px;
+    padding: clamp(1.4rem, 2vw, 2rem);
   }
 
-  .service-area__copy .section-kicker {
-    width: fit-content;
-    margin-bottom: 0.8rem;
-    font-size: 0;
+  .service-area__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .service-area__copy h2 {
+    max-width: 8ch;
   }
 
   .service-area__copy p {
-    max-width: 360px;
-    margin-top: 0.9rem;
+    max-width: 34ch;
+    margin-top: 1.2rem;
     color: var(--color-text-muted);
-    font-size: 0.82rem;
+    font-size: 0.76rem;
   }
 
   .service-area__copy a {
     display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     margin-top: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
     font-weight: 700;
+    text-transform: uppercase;
   }
 
-  .service-area__list {
+  .service-area__panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.4rem, 2vw, 2rem);
+    border-left: 1px solid var(--color-line);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .service-area__panel ul {
+    position: relative;
+    z-index: 2;
     display: grid;
-    gap: 1rem;
-    align-self: center;
-    margin: 0;
-    padding-top: 1.2rem;
+    gap: 1.15rem;
   }
 
-  .service-area__list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    color: var(--color-heading);
-    font-size: 0.8rem;
+  .service-area__panel li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.7rem;
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
     line-height: 1.45;
+    text-transform: uppercase;
   }
 
-  .service-area__list span {
-    flex: 0 0 auto;
-    color: var(--color-primary);
-    font-size: 1.1rem;
-    line-height: 1;
+  .service-area__panel li span {
+    color: var(--color-acid);
+    font-size: 1rem;
   }
 
-  @media (max-width: 1050px) {
+  @media (max-width: 620px) {
     .service-area__inner {
       grid-template-columns: 1fr;
-      gap: 1.7rem;
     }
 
-    .service-area__list {
-      max-width: 420px;
-      padding-top: 0;
-    }
-  }
-
-  @media (max-width: 580px) {
-    .service-area__inner {
-      padding: 2rem 1.35rem;
+    .service-area__panel {
+      min-height: 220px;
+      border-top: 1px solid var(--color-line);
+      border-left: 0;
     }
   }
 </style>

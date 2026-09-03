@@ -1,31 +1,34 @@
 ---
-/** FAQ в виде строгого аккордеона без карточек. */
-const questions = [
+/** Частые вопросы в виде жёсткого accordion-списка. */
+const items = [
   {
     question: 'От чего зависит стоимость?',
-    answer: 'От площади, высоты и плотности травы, рельефа и дополнительных работ.',
+    answer: 'От площади, высоты и плотности растительности, рельефа и дополнительных работ.',
   },
   {
     question: 'Можно ли заказать срочный выезд?',
-    answer: 'Да, если в графике есть свободное окно. Возможность подтверждаем при обращении.',
+    answer: 'Возможность срочного выезда зависит от загрузки и адреса участка. Уточняем при обращении.',
   },
   {
     question: 'Вы работаете в выходные?',
-    answer: 'График выездов согласуется индивидуально при оформлении заявки.',
+    answer: 'Дату и время работ согласовываем индивидуально при оформлении заявки.',
   },
   {
     question: 'Как подготовить участок к покосу?',
-    answer: 'Желательно убрать предметы, которые могут повредить технику или быть скрыты в траве.',
+    answer: 'Сообщите о скрытых препятствиях, коммуникациях и объектах, которые необходимо сохранить.',
   },
 ] as const;
 ---
 
 <section id="faq" class="faq" aria-labelledby="faq-title">
   <div class="faq__inner">
-    <h2 id="faq-title">Частые вопросы</h2>
+    <header class="faq__heading">
+      <h2 id="faq-title">Частые вопросы</h2>
+      <span class="section-index">/06</span>
+    </header>
 
     <div class="faq__list">
-      {questions.map((item) => (
+      {items.map((item) => (
         <details class="faq__item">
           <summary>
             <span>{item.question}</span>
@@ -39,36 +42,38 @@ const questions = [
 </section>
 
 <style>
-  .faq {
-    background: var(--color-background);
+  .faq__inner {
+    min-height: 300px;
+    padding: clamp(1.4rem, 2vw, 2rem);
   }
 
-  .faq__inner {
-    padding: clamp(1.8rem, 3.5vw, 3rem);
+  .faq__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .faq__list {
-    margin-top: 1.3rem;
-    border: 1px solid var(--color-border);
-    border-bottom: 0;
+    margin-top: 1.25rem;
+    border: 1px solid var(--color-line);
   }
 
-  .faq__item {
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-white);
+  .faq__item + .faq__item {
+    border-top: 1px solid var(--color-line);
   }
 
   .faq__item summary {
     display: grid;
     grid-template-columns: 1fr auto;
-    align-items: center;
     gap: 1rem;
-    min-height: 58px;
-    padding: 0.8rem 1rem;
-    color: var(--color-heading);
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
+    align-items: center;
+    min-height: 42px;
+    padding: 0.55rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
     list-style: none;
   }
 
@@ -77,27 +82,25 @@ const questions = [
   }
 
   .faq__plus {
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    transition: transform var(--transition-base);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: transform var(--transition-fast);
   }
 
   .faq__item[open] .faq__plus {
-    color: var(--color-primary);
     transform: rotate(45deg);
   }
 
   .faq__item p {
-    max-width: 62ch;
-    padding: 0 2.5rem 1rem 1rem;
+    padding: 0 0.75rem 0.8rem;
     color: var(--color-text-muted);
-    font-size: 0.8rem;
+    font-size: 0.74rem;
   }
 
-  @media (max-width: 580px) {
+  @media (max-width: 620px) {
     .faq__inner {
-      padding: 1.5rem 1.35rem;
+      min-height: 0;
+      padding: 1.35rem 1rem;
     }
   }
 </style>

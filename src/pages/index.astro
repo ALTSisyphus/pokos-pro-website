@@ -1,13 +1,5 @@
 ---
-/**
- * Главная страница сайта «Покос ПРО».
- *
- * Композиция повторяет логику референса:
- * - крупный split hero;
- * - услуги одной модульной строкой;
- * - асимметричный блок преимуществ;
- * - парные блоки «Работы / Цены», «География / FAQ», «Статьи / CTA».
- */
+/** Главная страница «Покос ПРО» в Editorial Brutalist стиле. */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -24,7 +16,7 @@ import FinalCTA from '../components/home/FinalCTA.astro';
 
 <BaseLayout
   title="Покос ПРО — покос травы и расчистка участков"
-  description="Покос травы, работа с высокой растительностью и расчистка дачных и загородных участков."
+  description="Покос травы, работа с высокой растительностью и расчистка дачных и загородных участков в Москве и Московской области."
 >
   <Header />
 
@@ -56,9 +48,10 @@ import FinalCTA from '../components/home/FinalCTA.astro';
   .home-split {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    border-left: 1px solid var(--color-line);
+    background: var(--color-paper);
   }
 
   .home-split > section {
@@ -66,20 +59,24 @@ import FinalCTA from '../components/home/FinalCTA.astro';
   }
 
   .home-split > section + section {
-    border-left: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-line);
   }
 
-  .home-split--bottom {
-    align-items: stretch;
-  }
-
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     .home-split {
       grid-template-columns: 1fr;
     }
 
     .home-split > section + section {
-      border-top: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-line);
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .home-split {
+      width: 100%;
+      border-right: 0;
       border-left: 0;
     }
   }

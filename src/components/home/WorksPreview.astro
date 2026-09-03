@@ -1,26 +1,26 @@
 ---
-/** Табличный список работ для левой половины парного блока. */
+/** Короткий типографический список работ без изображений. */
 const works = [
-  ['01', 'Покос дачного участка', 'Участок любой площади'],
-  ['02', 'Расчистка запущенного участка', 'Высокая трава и сорняк'],
-  ['03', 'Покос и сбор травы', 'Комплексное обслуживание'],
+  { number: '01', title: 'Покос дачного участка', meta: 'Участок любой площади' },
+  { number: '02', title: 'Расчистка запущенного участка', meta: 'Высокая трава и сорняк' },
+  { number: '03', title: 'Покос и вывоз травы', meta: 'Комплексное обслуживание' },
 ] as const;
 ---
 
-<section id="works" class="works" aria-labelledby="works-title">
-  <div class="works__inner">
-    <header class="works__header">
-      <span class="section-kicker" aria-hidden="true"></span>
+<section id="works" class="works-preview" aria-labelledby="works-title">
+  <div class="works-preview__inner">
+    <header class="works-preview__heading">
       <h2 id="works-title">Наши работы</h2>
+      <span class="section-index">/03</span>
     </header>
 
-    <div class="works__list">
-      {works.map(([number, title, meta]) => (
-        <a class="works__row" href="#contacts">
-          <span class="works__number">{number}</span>
-          <strong>{title}</strong>
-          <span class="works__meta">{meta}</span>
-          <span class="works__link">Смотреть →</span>
+    <div class="works-preview__list">
+      {works.map((work) => (
+        <a class="works-preview__row" href="#contacts">
+          <span>{work.number}</span>
+          <strong>{work.title}</strong>
+          <small>{work.meta}</small>
+          <b>Смотреть →</b>
         </a>
       ))}
     </div>
@@ -28,86 +28,73 @@ const works = [
 </section>
 
 <style>
-  .works {
-    background: var(--color-background);
+  .works-preview__inner {
+    min-height: 300px;
+    padding: clamp(1.4rem, 2vw, 2rem);
   }
 
-  .works__inner {
-    padding: clamp(1.8rem, 3.5vw, 3rem);
+  .works-preview__heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
-  .works__header {
+  .works-preview__list {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .works-preview__row {
     display: grid;
-    gap: 0.8rem;
-    margin-bottom: 1.3rem;
-  }
-
-  .works__header .section-kicker {
-    width: fit-content;
-    font-size: 0;
-  }
-
-  .works__list {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .works__row {
-    display: grid;
-    grid-template-columns: 42px minmax(0, 1.2fr) minmax(120px, 0.8fr) auto;
+    grid-template-columns: 2.5rem minmax(0, 1.35fr) minmax(0, 1fr) auto;
+    gap: 0.7rem;
     align-items: center;
-    gap: 0.8rem;
-    min-height: 68px;
-    border-bottom: 1px solid var(--color-border);
-    font-size: 0.78rem;
+    min-height: 55px;
+    border-bottom: 1px solid var(--color-line);
+    transition: background-color var(--transition-fast);
   }
 
-  .works__number,
-  .works__link {
-    color: var(--color-primary);
-    font-family: var(--font-heading);
+  .works-preview__row:hover {
+    background: var(--color-paper-2);
+  }
+
+  .works-preview__row > span,
+  .works-preview__row > b,
+  .works-preview__row > small {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    text-transform: uppercase;
+  }
+
+  .works-preview__row > span {
+    color: var(--color-acid-hover);
     font-weight: 700;
   }
 
-  .works__number {
-    font-size: 1.05rem;
+  .works-preview__row > strong {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    text-transform: uppercase;
   }
 
-  .works__row strong {
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 0.82rem;
-  }
-
-  .works__meta {
+  .works-preview__row > small {
     color: var(--color-text-muted);
   }
 
-  .works__link {
-    white-space: nowrap;
-  }
-
-  @media (max-width: 580px) {
-    .works__inner {
-      padding: 1.5rem 1.35rem;
+  @media (max-width: 620px) {
+    .works-preview__inner {
+      min-height: 0;
+      padding: 1.35rem 1rem;
     }
 
-    .works__row {
-      grid-template-columns: 36px 1fr auto;
-      gap: 0.65rem;
-      padding-block: 0.8rem;
+    .works-preview__row {
+      grid-template-columns: 2rem 1fr auto;
+      padding-block: 0.7rem;
     }
 
-    .works__meta {
+    .works-preview__row > small {
       display: none;
-    }
-
-    .works__link {
-      font-size: 0;
-    }
-
-    .works__link::after {
-      font-size: 1rem;
-      content: '→';
     }
   }
 </style>
