@@ -38,26 +38,26 @@
      Colors
      ------------------------------------------------------------------------ */
 
-  --color-primary: #27663c;
-  --color-primary-hover: #1f5431;
-  --color-primary-active: #194529;
+  --color-primary: #35bfa4;
+  --color-primary-hover: #2aab92;
+  --color-primary-active: #23957f;
   --color-primary-soft: #e7f0e7;
-  --color-focus: #9a4f16;
+  --color-focus: #18211f;
 
   --color-heading: #19231b;
-  --color-text: #445047;
-  --color-text-muted: #5c685f;
+  --color-text: #18211f;
+  --color-text-muted: #66716e;
 
   --color-white: #ffffff;
   --color-black: #000000;
 
   --color-background: #ffffff;
-  --color-background-soft: #f5f7f3;
+  --color-background-soft: #f4f7f6;
   --color-background-muted: #e9eee8;
   --color-background-dark: #17271c;
 
-  --color-border: #d9e0d8;
-  --color-border-strong: #78877b;
+  --color-border: #d9e1de;
+  --color-border-strong: #b8c5c1;
 
   --color-overlay: rgba(14, 22, 16, 0.62);
 

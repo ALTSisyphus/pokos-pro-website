@@ -47,10 +47,6 @@ const navigation = [
         href="/"
         aria-label="Покос ПРО — главная страница"
       >
-        <span
-          class="site-header__brand-mark"
-          aria-hidden="true"
-        ></span>
 
         <span class="site-header__brand-copy">
           <span class="site-header__brand-name">
@@ -58,7 +54,7 @@ const navigation = [
           </span>
 
           <span class="site-header__brand-description">
-            Уход за участками
+            Профессиональный покос травы
           </span>
         </span>
       </a>
@@ -193,20 +189,6 @@ const navigation = [
     color: var(--color-heading);
 
     text-decoration: none;
-  }
-
-  .site-header__brand-mark {
-    position: relative;
-
-    display: block;
-    flex: 0 0 auto;
-
-    width: 36px;
-    height: 36px;
-
-    overflow: hidden;
-
-    background: var(--color-primary);
   }
 
   .site-header__brand-mark::before,
@@ -487,10 +469,6 @@ const navigation = [
   }
 
   @media (max-width: 520px) {
-    .site-header__brand-mark {
-      width: 32px;
-      height: 32px;
-    }
 
     .site-header__brand-name {
       font-size: 1.075rem;
