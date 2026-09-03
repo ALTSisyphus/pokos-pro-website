@@ -1,6 +1,7 @@
 ---
 /**
- * Компактная шапка в логике референса.
+ * Шапка сайта в Editorial Brutalist стиле:
+ * чёрная плоскость, кислотный CTA и информационный ticker.
  */
 const navigation = [
   { href: '/#services', label: 'Услуги' },
@@ -17,7 +18,7 @@ const navigation = [
   <div class="container site-header__inner">
     <a class="site-header__brand" href="/" aria-label="Покос ПРО — главная">
       <span class="site-header__brand-name">Покос <strong>ПРО</strong></span>
-      <span class="site-header__brand-note">Профессиональный<br />покос травы</span>
+      <span class="site-header__brand-note">Профессиональный<br />покос и расчистка</span>
     </a>
 
     <nav class="site-header__desktop" aria-label="Основная навигация">
@@ -27,8 +28,8 @@ const navigation = [
         ))}
       </ul>
 
-      <a class="button button--primary site-header__cta" href="/#contacts">
-        Оставить заявку
+      <a class="button button--acid site-header__cta" href="/#contacts">
+        Рассчитать стоимость
       </a>
     </nav>
 
@@ -46,9 +47,18 @@ const navigation = [
             ))}
           </ul>
         </nav>
-        <a class="button button--primary" href="/#contacts">Оставить заявку</a>
+        <a class="button button--acid" href="/#contacts">Оставить заявку</a>
       </div>
     </details>
+  </div>
+
+  <div class="site-ticker" aria-label="Ключевая информация">
+    <div class="container site-ticker__track">
+      <span><b>●</b> Москва и Московская область</span>
+      <span>Покос • расчистка • вывоз</span>
+      <span>Заявка → оценка → согласование → выезд</span>
+      <span>Работаем быстро и аккуратно</span>
+    </div>
   </div>
 </header>
 
@@ -65,8 +75,8 @@ const navigation = [
     position: sticky;
     top: 0;
     z-index: var(--z-header);
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-background);
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
   .site-header__inner {
@@ -75,71 +85,112 @@ const navigation = [
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    border-right: 1px solid var(--color-line-dark);
+    border-left: 1px solid var(--color-line-dark);
   }
 
   .site-header__brand {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 1.35rem;
+    gap: 1.15rem;
   }
 
   .site-header__brand-name {
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 1.45rem;
+    color: var(--color-paper);
+    font-family: var(--font-display);
+    font-size: 1.9rem;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     white-space: nowrap;
   }
 
   .site-header__brand-name strong {
-    color: var(--color-primary);
+    color: var(--color-acid);
+    font-weight: 700;
   }
 
   .site-header__brand-note {
-    padding-left: 1.25rem;
-    border-left: 1px solid var(--color-border);
-    color: var(--color-heading);
-    font-size: 0.66rem;
-    font-weight: 500;
+    padding-left: 1.15rem;
+    border-left: 1px solid var(--color-line-dark);
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
     line-height: 1.35;
+    text-transform: uppercase;
   }
 
   .site-header__desktop {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2.4vw, 2.75rem);
+    gap: 1.4rem;
   }
 
   .site-header__links {
     display: flex;
     align-items: center;
-    gap: clamp(0.25rem, 0.7vw, 0.8rem);
+    gap: clamp(0.1rem, 0.6vw, 0.65rem);
   }
 
   .site-header__links a {
     display: inline-flex;
-    min-height: 42px;
+    min-height: 40px;
     align-items: center;
-    padding: 0 0.55rem;
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 0.74rem;
+    padding: 0 0.42rem;
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
     font-weight: 600;
-    transition: color var(--transition-fast);
+    text-transform: uppercase;
     white-space: nowrap;
+    transition: color var(--transition-fast);
   }
 
   .site-header__links a:hover {
-    color: var(--color-primary);
+    color: var(--color-acid);
   }
 
   .site-header__cta {
-    min-height: 42px;
-    padding-inline: 1.4rem;
+    min-height: 44px;
+    padding-inline: 1.05rem;
+    font-size: 0.62rem;
     white-space: nowrap;
+  }
+
+  .site-ticker {
+    border-top: 1px solid var(--color-line-dark);
+    border-bottom: 1px solid var(--color-line-dark);
+    background: var(--color-ink);
+  }
+
+  .site-ticker__track {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.4fr 1fr;
+    min-height: 34px;
+    align-items: center;
+    border-right: 1px solid var(--color-line-dark);
+    border-left: 1px solid var(--color-line-dark);
+  }
+
+  .site-ticker__track span {
+    padding: 0.45rem 0.8rem;
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .site-ticker__track span + span {
+    border-left: 1px solid var(--color-line-dark);
+  }
+
+  .site-ticker__track b {
+    margin-right: 0.45rem;
+    color: var(--color-acid);
   }
 
   .site-header__menu {
@@ -149,16 +200,15 @@ const navigation = [
 
   .site-header__menu summary {
     display: inline-flex;
-    min-height: 44px;
+    min-height: 42px;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0 0.9rem;
-    border: 1px solid var(--color-border-strong);
-    color: var(--color-heading);
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 700;
-    cursor: pointer;
+    gap: 0.65rem;
+    padding: 0 0.85rem;
+    border: 1px solid var(--color-line-dark);
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
     list-style: none;
   }
 
@@ -170,8 +220,8 @@ const navigation = [
     position: relative;
     width: 18px;
     height: 12px;
-    border-top: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
   }
 
   .site-header__burger::after {
@@ -179,38 +229,38 @@ const navigation = [
     top: 50%;
     right: 0;
     left: 0;
-    height: 2px;
+    height: 1px;
     background: currentColor;
     content: '';
-    transform: translateY(-50%);
   }
 
   .site-header__menu-panel {
     position: absolute;
-    top: calc(100% + 13px);
+    top: calc(100% + 12px);
     right: 0;
     display: grid;
-    gap: 1.25rem;
-    width: min(360px, calc(100vw - 2rem));
-    padding: 1.25rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-white);
+    gap: 1rem;
+    width: min(360px, calc(100vw - 1.7rem));
+    padding: 1rem;
+    border: 1px solid var(--color-line-dark);
+    background: var(--color-ink);
   }
 
   .site-header__menu-panel li + li {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-line-dark);
   }
 
   .site-header__menu-panel nav a {
     display: flex;
-    min-height: 44px;
+    min-height: 42px;
     align-items: center;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 600;
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
   }
 
-  @media (max-width: 1180px) {
+  @media (max-width: 1240px) {
     .site-header__desktop {
       display: none;
     }
@@ -218,11 +268,20 @@ const navigation = [
     .site-header__menu {
       display: block;
     }
+
+    .site-ticker__track {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .site-ticker__track span:nth-child(n + 3) {
+      display: none;
+    }
   }
 
-  @media (max-width: 560px) {
-    .site-header__brand {
-      gap: 0;
+  @media (max-width: 620px) {
+    .site-header__inner {
+      border-right: 0;
+      border-left: 0;
     }
 
     .site-header__brand-note {
@@ -230,7 +289,21 @@ const navigation = [
     }
 
     .site-header__brand-name {
-      font-size: 1.25rem;
+      font-size: 1.6rem;
+    }
+
+    .site-ticker__track {
+      grid-template-columns: 1fr;
+      border-right: 0;
+      border-left: 0;
+    }
+
+    .site-ticker__track span {
+      text-align: center;
+    }
+
+    .site-ticker__track span:nth-child(n + 2) {
+      display: none;
     }
   }
 </style>
