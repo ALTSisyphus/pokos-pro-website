@@ -52,14 +52,6 @@ const navigation = [
     </details>
   </div>
 
-  <div class="site-ticker" aria-label="Ключевая информация">
-    <div class="container site-ticker__track">
-      <span><b>●</b> Москва и Московская область</span>
-      <span>Покос • расчистка • вывоз</span>
-      <span>Заявка → оценка → согласование → выезд</span>
-      <span>Работаем быстро и аккуратно</span>
-    </div>
-  </div>
 </header>
 
 <script>
@@ -75,6 +67,7 @@ const navigation = [
     position: sticky;
     top: 0;
     z-index: var(--z-header);
+    border-bottom: 1px solid var(--color-line-dark);
     background: var(--color-ink);
     color: var(--color-paper);
   }
@@ -159,39 +152,6 @@ const navigation = [
     white-space: nowrap;
   }
 
-  .site-ticker {
-    border-top: 1px solid var(--color-line-dark);
-    border-bottom: 1px solid var(--color-line-dark);
-    background: var(--color-ink);
-  }
-
-  .site-ticker__track {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.4fr 1fr;
-    min-height: 34px;
-    align-items: center;
-    border-right: 1px solid var(--color-line-dark);
-    border-left: 1px solid var(--color-line-dark);
-  }
-
-  .site-ticker__track span {
-    padding: 0.45rem 0.8rem;
-    color: var(--color-paper);
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    line-height: 1.25;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .site-ticker__track span + span {
-    border-left: 1px solid var(--color-line-dark);
-  }
-
-  .site-ticker__track b {
-    margin-right: 0.45rem;
-    color: var(--color-acid);
-  }
 
   .site-header__menu {
     display: none;
@@ -269,13 +229,7 @@ const navigation = [
       display: block;
     }
 
-    .site-ticker__track {
-      grid-template-columns: repeat(2, 1fr);
-    }
 
-    .site-ticker__track span:nth-child(n + 3) {
-      display: none;
-    }
   }
 
   @media (max-width: 620px) {
@@ -292,18 +246,6 @@ const navigation = [
       font-size: 1.6rem;
     }
 
-    .site-ticker__track {
-      grid-template-columns: 1fr;
-      border-right: 0;
-      border-left: 0;
-    }
 
-    .site-ticker__track span {
-      text-align: center;
-    }
-
-    .site-ticker__track span:nth-child(n + 2) {
-      display: none;
-    }
   }
 </style>
