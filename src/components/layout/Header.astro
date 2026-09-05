@@ -1,8 +1,4 @@
 ---
-/**
- * Шапка сайта в Editorial Brutalist стиле:
- * чёрная плоскость, кислотный CTA и информационный ticker.
- */
 const navigation = [
   { href: '/#services', label: 'Услуги' },
   { href: '/#advantages', label: 'Преимущества' },
@@ -34,7 +30,7 @@ const navigation = [
     </nav>
 
     <details class="site-header__menu">
-      <summary aria-label="Открыть меню">
+      <summary>
         <span>Меню</span>
         <span class="site-header__burger" aria-hidden="true"></span>
       </summary>
@@ -51,13 +47,21 @@ const navigation = [
       </div>
     </details>
   </div>
-
 </header>
 
 <script>
   document.querySelectorAll<HTMLDetailsElement>('.site-header__menu').forEach((menu) => {
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => menu.removeAttribute('open'));
+    menu.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) {
+        menu.open = false;
+      }
+    });
+
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
     });
   });
 </script>
@@ -152,7 +156,6 @@ const navigation = [
     white-space: nowrap;
   }
 
-
   .site-header__menu {
     display: none;
     position: relative;
@@ -228,8 +231,6 @@ const navigation = [
     .site-header__menu {
       display: block;
     }
-
-
   }
 
   @media (max-width: 620px) {
@@ -245,7 +246,5 @@ const navigation = [
     .site-header__brand-name {
       font-size: 1.6rem;
     }
-
-
   }
 </style>

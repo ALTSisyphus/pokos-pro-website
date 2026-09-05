@@ -1,11 +1,7 @@
----
-/** Финальный конверсионный блок в чёрной плоскости. */
----
-
 <section id="contacts" class="final-cta" aria-labelledby="contacts-title">
   <div class="final-cta__inner">
     <div class="final-cta__copy">
-      <div class="final-cta__heading">
+      <div class="section-heading">
         <h2 id="contacts-title">Заказать покос или расчистку</h2>
         <span class="section-index">/08</span>
       </div>
@@ -15,8 +11,8 @@
       </p>
 
       <div class="final-cta__contacts">
-        <a href="tel:+79991234567"><span>☎</span><b>+7 (999) 123-45-67</b></a>
-        <a href="mailto:info@pokos-pro.ru"><span>✉</span><b>info@pokos-pro.ru</b></a>
+        <a href="tel:+79991234567"><span aria-hidden="true">☎</span><b>+7 (999) 123-45-67</b></a>
+        <a href="mailto:info@pokos-pro.ru"><span aria-hidden="true">✉</span><b>info@pokos-pro.ru</b></a>
       </div>
     </div>
 
@@ -58,14 +54,7 @@
     grid-template-columns: 0.9fr 1.1fr;
     gap: clamp(1.2rem, 2vw, 2rem);
     min-height: 330px;
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .final-cta__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .final-cta h2 {
@@ -128,7 +117,6 @@
     width: 100%;
     border: 1px solid var(--color-line-dark);
     border-radius: 0;
-    outline: 0;
     background: transparent;
     color: var(--color-paper);
     font-family: var(--font-mono);
@@ -155,11 +143,10 @@
     border-color: var(--color-acid);
   }
 
-  .final-cta__check {
-    display: grid !important;
+  .final-cta__form .final-cta__check {
     grid-template-columns: auto 1fr;
     align-items: start;
-    gap: 0.55rem !important;
+    gap: 0.55rem;
     margin-top: 0.15rem;
   }
 
@@ -178,7 +165,7 @@
     .final-cta__inner {
       grid-template-columns: 1fr;
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
     }
   }
 

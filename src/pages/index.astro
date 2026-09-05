@@ -1,5 +1,4 @@
 ---
-/** Главная страница «Покос ПРО» в Editorial Brutalist стиле. */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -25,17 +24,17 @@ import FinalCTA from '../components/home/FinalCTA.astro';
     <Services />
     <Benefits />
 
-    <div class="container home-split home-split--works">
+    <div class="container home-split">
       <WorksPreview />
       <Pricing />
     </div>
 
-    <div class="container home-split home-split--area">
+    <div class="container home-split">
       <ServiceArea />
       <FAQ />
     </div>
 
-    <div class="container home-split home-split--bottom">
+    <div class="container home-split">
       <BlogPreview />
       <FinalCTA />
     </div>
@@ -44,7 +43,7 @@ import FinalCTA from '../components/home/FinalCTA.astro';
   <Footer />
 </BaseLayout>
 
-<style is:global>
+<style>
   .home-split {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -54,11 +53,11 @@ import FinalCTA from '../components/home/FinalCTA.astro';
     background: var(--color-paper);
   }
 
-  .home-split > section {
+  .home-split > :global(section) {
     min-width: 0;
   }
 
-  .home-split > section + section {
+  .home-split > :global(section + section) {
     border-left: 1px solid var(--color-line);
   }
 
@@ -67,7 +66,7 @@ import FinalCTA from '../components/home/FinalCTA.astro';
       grid-template-columns: 1fr;
     }
 
-    .home-split > section + section {
+    .home-split > :global(section + section) {
       border-top: 1px solid var(--color-line);
       border-left: 0;
     }

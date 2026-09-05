@@ -1,5 +1,4 @@
 ---
-/** Короткий типографический список работ без изображений. */
 const works = [
   { number: '01', title: 'Покос дачного участка', meta: 'Участок любой площади' },
   { number: '02', title: 'Расчистка запущенного участка', meta: 'Высокая трава и сорняк' },
@@ -9,7 +8,7 @@ const works = [
 
 <section id="works" class="works-preview" aria-labelledby="works-title">
   <div class="works-preview__inner">
-    <header class="works-preview__heading">
+    <header class="section-heading">
       <h2 id="works-title">Наши работы</h2>
       <span class="section-index">/03</span>
     </header>
@@ -30,14 +29,7 @@ const works = [
 <style>
   .works-preview__inner {
     min-height: 300px;
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .works-preview__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .works-preview__list {
@@ -85,7 +77,7 @@ const works = [
   @media (max-width: 620px) {
     .works-preview__inner {
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
     }
 
     .works-preview__row {

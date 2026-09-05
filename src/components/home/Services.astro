@@ -1,5 +1,4 @@
 ---
-/** Основные услуги в модульной редакционной сетке. */
 const services = [
   {
     number: '01',
@@ -22,7 +21,7 @@ const services = [
 <section id="services" class="services" aria-labelledby="services-title">
   <div class="container services__grid">
     <header class="services__intro">
-      <div class="services__title-row">
+      <div class="section-heading">
         <h2 id="services-title">Услуги</h2>
         <span class="section-index">/01</span>
       </div>
@@ -57,13 +56,6 @@ const services = [
   .services__item {
     min-height: 215px;
     padding: clamp(1.5rem, 2.4vw, 2.4rem);
-  }
-
-  .services__title-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
   }
 
   .services__intro p {
@@ -149,7 +141,7 @@ const services = [
     .services__intro,
     .services__item {
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
       border-left: 0;
     }
   }

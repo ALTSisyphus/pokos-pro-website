@@ -1,5 +1,4 @@
 ---
-/** Превью полезных материалов в чистой типографической сетке. */
 const articles = [
   {
     title: 'Как часто нужно косить траву на участке',
@@ -18,7 +17,7 @@ const articles = [
 
 <section id="articles" class="blog-preview" aria-labelledby="articles-title">
   <div class="blog-preview__inner">
-    <header class="blog-preview__heading">
+    <header class="section-heading">
       <h2 id="articles-title">Полезные статьи</h2>
       <span class="section-index">/07</span>
     </header>
@@ -40,14 +39,7 @@ const articles = [
 <style>
   .blog-preview__inner {
     min-height: 280px;
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .blog-preview__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .blog-preview__grid {
@@ -93,7 +85,7 @@ const articles = [
   @media (max-width: 620px) {
     .blog-preview__inner {
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
     }
 
     .blog-preview__grid {

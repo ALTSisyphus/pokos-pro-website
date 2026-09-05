@@ -1,5 +1,4 @@
 ---
-/** Прайс в формате технической таблицы. Значения можно заменить фактическими тарифами. */
 const prices = [
   { title: 'Обычный покос', text: 'Покос травы средней высоты', price: 'от 700 ₽ / сотка' },
   { title: 'Высокая трава', text: 'Покос высокой травы и сорняка', price: 'от 1 000 ₽ / сотка' },
@@ -9,7 +8,7 @@ const prices = [
 
 <section id="prices" class="pricing" aria-labelledby="prices-title">
   <div class="pricing__inner">
-    <header class="pricing__heading">
+    <header class="section-heading">
       <h2 id="prices-title">Стоимость работ</h2>
       <span class="section-index">/04</span>
     </header>
@@ -36,14 +35,7 @@ const prices = [
 <style>
   .pricing__inner {
     min-height: 390px;
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .pricing__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .pricing__table {
@@ -102,7 +94,7 @@ const prices = [
   @media (max-width: 620px) {
     .pricing__inner {
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
     }
 
     .pricing__row {

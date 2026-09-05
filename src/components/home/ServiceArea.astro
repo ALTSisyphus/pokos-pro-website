@@ -1,5 +1,4 @@
 ---
-/** География работ: текст и контрастная utility-панель без декоративной графики. */
 const areas = [
   'Москва и Московская область',
   'Ближние районы — по согласованию',
@@ -10,7 +9,7 @@ const areas = [
 <section id="service-area" class="service-area" aria-labelledby="service-area-title">
   <div class="service-area__inner">
     <div class="service-area__copy">
-      <header class="service-area__heading">
+      <header class="section-heading">
         <h2 id="service-area-title">Где мы работаем</h2>
         <span class="section-index">/05</span>
       </header>
@@ -41,14 +40,7 @@ const areas = [
   }
 
   .service-area__copy {
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .service-area__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .service-area__copy h2 {
@@ -74,17 +66,13 @@ const areas = [
   }
 
   .service-area__panel {
-    position: relative;
-    overflow: hidden;
-    padding: clamp(1.4rem, 2vw, 2rem);
+    padding: var(--section-padding);
     border-left: 1px solid var(--color-line);
     background: var(--color-ink);
     color: var(--color-paper);
   }
 
   .service-area__panel ul {
-    position: relative;
-    z-index: 2;
     display: grid;
     gap: 1.15rem;
   }

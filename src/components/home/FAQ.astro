@@ -1,5 +1,4 @@
 ---
-/** Частые вопросы в виде жёсткого accordion-списка. */
 const items = [
   {
     question: 'От чего зависит стоимость?',
@@ -22,7 +21,7 @@ const items = [
 
 <section id="faq" class="faq" aria-labelledby="faq-title">
   <div class="faq__inner">
-    <header class="faq__heading">
+    <header class="section-heading">
       <h2 id="faq-title">Частые вопросы</h2>
       <span class="section-index">/06</span>
     </header>
@@ -44,14 +43,7 @@ const items = [
 <style>
   .faq__inner {
     min-height: 300px;
-    padding: clamp(1.4rem, 2vw, 2rem);
-  }
-
-  .faq__heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    padding: var(--section-padding);
   }
 
   .faq__list {
@@ -100,7 +92,7 @@ const items = [
   @media (max-width: 620px) {
     .faq__inner {
       min-height: 0;
-      padding: 1.35rem 1rem;
+      padding: var(--section-padding-mobile);
     }
   }
 </style>
